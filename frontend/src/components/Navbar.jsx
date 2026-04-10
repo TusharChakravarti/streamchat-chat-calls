@@ -28,7 +28,53 @@ const Navbar = () => {
               <Link to="/" className="flex items-center gap-2.5" >
  
 
+              
+   
 
+
+
+         <div className="mb-1 flex items-center justify-start gap-2">
+
+  <svg
+    width={36}
+    height={36}
+    viewBox="0 0 36 36"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient id="bubbleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="oklch(var(--p))" />
+        <stop offset="100%" stopColor="oklch(var(--s))" />
+      </linearGradient>
+    </defs>
+
+
+    <rect width="36" height="36" rx="9" fill="url(#bubbleGrad)" fillOpacity="0.1" />
+
+
+    <rect x="6" y="8" width="16" height="11" rx="4" fill="url(#bubbleGrad)" fillOpacity="0.4" />
+    <polygon points="8,19 6,25 14,19" fill="url(#bubbleGrad)" fillOpacity="0.4" />
+
+ 
+    <rect x="14" y="17" width="16" height="11" rx="4" fill="url(#bubbleGrad)" />
+    <polygon points="28,28 30,34 22,28" fill="url(#bubbleGrad)" />
+  </svg>
+
+  <span
+    style={{
+      fontSize: 36 * 0.72,
+      fontWeight: "700",
+      letterSpacing: "-0.4px",
+      lineHeight: 1,
+    }}
+    className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+  >
+    Stream
+    <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Chat</span>
+  </span>
+
+</div>
 
 
 
@@ -39,6 +85,73 @@ const Navbar = () => {
             </div>
           )}
 
+
+
+
+
+{!isChatPage && (
+   <div className="pl-1 lg:hidden">
+              <Link to="/" className="flex items-center gap-2.5" >
+ 
+
+              
+   
+
+
+
+         <div className="mb-1 flex items-center justify-start gap-2">
+
+  <svg
+    width={36}
+    height={36}
+    viewBox="0 0 36 36"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <defs>
+      <linearGradient id="bubbleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="oklch(var(--p))" />
+        <stop offset="100%" stopColor="oklch(var(--s))" />
+      </linearGradient>
+    </defs>
+
+
+    <rect width="36" height="36" rx="9" fill="url(#bubbleGrad)" fillOpacity="0.1" />
+
+
+    <rect x="6" y="8" width="16" height="11" rx="4" fill="url(#bubbleGrad)" fillOpacity="0.4" />
+    <polygon points="8,19 6,25 14,19" fill="url(#bubbleGrad)" fillOpacity="0.4" />
+
+ 
+    <rect x="14" y="17" width="16" height="11" rx="4" fill="url(#bubbleGrad)" />
+    <polygon points="28,28 30,34 22,28" fill="url(#bubbleGrad)" />
+  </svg>
+
+  <span
+    style={{
+      fontSize: 36 * 0.72,
+      fontWeight: "700",
+      letterSpacing: "-0.4px",
+      lineHeight: 1,
+    }}
+    className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+  >
+    Stream
+    <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Chat</span>
+  </span>
+
+</div>
+
+
+
+
+
+          
+              </Link>
+            </div>
+)}      
+
+    
           <div className="flex items-center gap-3 sm:gap-4 ml-auto">
             <Link to={"/notifications"}>
               <button className="btn btn-ghost btn-circle">

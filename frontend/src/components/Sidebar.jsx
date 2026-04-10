@@ -12,8 +12,10 @@ const Sidebar = () => {
       <div className="p-5 border-b border-base-300">
         <Link to="/" className="flex items-center gap-2.5">
         
-    <div className="mb-4 flex items-center justify-start gap-2">
-        
+
+          {/* Logo */}
+      <div className="mb-4 flex items-center justify-start gap-2">
+
   <svg
     width={36}
     height={36}
@@ -21,34 +23,39 @@ const Sidebar = () => {
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    {/* Background tile */}
-    <rect width="36" height="36" rx="9" fill="#4ade80" fillOpacity="0.1" />
+    <defs>
+      <linearGradient id="bubbleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stopColor="oklch(var(--p))" />
+        <stop offset="100%" stopColor="oklch(var(--s))" />
+      </linearGradient>
+    </defs>
 
-    {/* Back bubble (faded) */}
-    <rect x="6" y="8" width="16" height="11" rx="4" fill="#4ade80" fillOpacity="0.4" />
-    <polygon points="8,19 6,25 14,19" fill="#4ade80" fillOpacity="0.4" />
 
-    {/* Front bubble (solid) */}
-    <rect x="14" y="17" width="16" height="11" rx="4" fill="#4ade80" />
-    <polygon points="28,28 30,34 22,28" fill="#4ade80" />
+    <rect width="36" height="36" rx="9" fill="url(#bubbleGrad)" fillOpacity="0.1" />
+
+
+    <rect x="6" y="8" width="16" height="11" rx="4" fill="url(#bubbleGrad)" fillOpacity="0.4" />
+    <polygon points="8,19 6,25 14,19" fill="url(#bubbleGrad)" fillOpacity="0.4" />
+
+ 
+    <rect x="14" y="17" width="16" height="11" rx="4" fill="url(#bubbleGrad)" />
+    <polygon points="28,28 30,34 22,28" fill="url(#bubbleGrad)" />
   </svg>
 
-  {/* Wordmark */}
   <span
     style={{
       fontSize: 36 * 0.72,
       fontWeight: "700",
       letterSpacing: "-0.4px",
       lineHeight: 1,
-      color: "#4ade80",
     }}
+    className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
   >
     Stream
-    <span style={{ color: "#ffffff" }}>Chat</span>
+    <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Chat</span>
   </span>
 
-
-          </div>
+</div>
         </Link>
       </div>
 
