@@ -38,8 +38,8 @@ const Navbar = () => {
     </svg>
 
     <span style={{ fontSize: "26px", fontWeight: "700", letterSpacing: "-0.4px", lineHeight: 1 }}>
-      <span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary  tracking-wider">Stream</span>
-      <span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary  tracking-wider">Chat</span>
+      {/* <span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary  tracking-wider">Stream</span>
+      <span className="text-3xl font-bold font-mono bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary  tracking-wider">Chat</span> */}
     </span>
   </div>
 </div>
