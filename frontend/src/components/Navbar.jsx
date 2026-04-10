@@ -8,7 +8,7 @@ const Navbar = () => {
   const { authUser } = useAuthUser();
   const location = useLocation();
   const isChatPage = location.pathname?.startsWith("/chat");
-
+  const theme = localStorage.getItem("theme")
   // const queryClient = useQueryClient();
   // const { mutate: logoutMutation } = useMutation({
   //   mutationFn: logout,
@@ -24,42 +24,33 @@ const Navbar = () => {
           {/* LOGO - ONLY IN THE CHAT PAGE */}
           {isChatPage && (
             <div className="pl-5">
-              <Link to="/" className="flex items-center gap-2.5">
+              <Link to="/" className="flex items-center gap-2.5" >
                
-    <div className="mb-4 flex items-center justify-start gap-2">
+    <div className="mb-4 flex items-center justify-start gap-2" data-theme={theme}>
         
+
+
+<div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
   <svg
     width={36}
     height={36}
     viewBox="0 0 36 36"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
   >
-    {/* Background tile */}
-    <rect width="36" height="36" rx="9" fill="#4ade80" fillOpacity="0.1" />
-
-    {/* Back bubble (faded) */}
     <rect x="6" y="8" width="16" height="11" rx="4" fill="#4ade80" fillOpacity="0.4" />
     <polygon points="8,19 6,25 14,19" fill="#4ade80" fillOpacity="0.4" />
-
-    {/* Front bubble (solid) */}
     <rect x="14" y="17" width="16" height="11" rx="4" fill="#4ade80" />
     <polygon points="28,28 30,34 22,28" fill="#4ade80" />
   </svg>
 
-  {/* Wordmark */}
-  <span
-    style={{
-      fontSize: 36 * 0.72,
-      fontWeight: "700",
-      letterSpacing: "-0.4px",
-      lineHeight: 1,
-      color: "#4ade80",
-    }}
-  >
-    Stream
-    <span style={{ color: "#ffffff" }}>Chat</span>
+  <span style={{ fontSize: "26px", fontWeight: "700", letterSpacing: "-0.4px", lineHeight: 1 }}>
+    <span style={{ color: "#4ade80" }}>Stream</span>
+<span style={{ color: "oklch(var(--bc))" }}>Chat</span>
   </span>
+</div>
+
+
+    
 
 
           </div>
