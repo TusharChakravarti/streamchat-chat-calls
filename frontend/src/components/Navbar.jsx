@@ -22,134 +22,51 @@ const Navbar = () => {
     <nav className="bg-base-200 border-b border-base-300 sticky top-0 z-30 h-16 flex items-center">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-end w-full">
-          {/* LOGO - ONLY IN THE CHAT PAGE */}
-          {isChatPage && (
-            <div className="pl-5">
-              <Link to="/" className="flex items-center gap-2.5" >
- 
+          {/* LOGO - ONLY FOR MOBILE` */}
+        
 
-              
-   
+{(isChatPage || !isChatPage) && (
+  <div className={`${isChatPage ? "pl-5" : "pl-1 lg:hidden"}`}>
+    <Link to="/" className="flex items-center gap-2.5">
+      <div className="mb-1 flex items-center justify-start gap-2">
+        <svg
+          width={36}
+          height={36}
+          viewBox="0 0 36 36"
+          className="overflow-visible" 
+        >
+          <defs>
+       
+            <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="oklch(var(--p))" />
+              <stop offset="100%" stopColor="oklch(var(--s))" />
+            </linearGradient>
+          </defs>
 
+    
+          <rect width="36" height="36" rx="9" fill="url(#logoGradient)" fillOpacity="0.1" />
 
+       
+          <rect x="6" y="8" width="16" height="11" rx="4" fill="url(#logoGradient)" fillOpacity="0.4" />
+          <path d="M8 19L6 25L14 19" fill="url(#logoGradient)" fillOpacity="0.4" />
 
-         <div className="mb-1 flex items-center justify-start gap-2">
+    
+          <rect x="14" y="17" width="16" height="11" rx="4" fill="url(#logoGradient)" />
+          <path d="M28 28L30 34L22 28" fill="url(#logoGradient)" />
+        </svg>
 
-  <svg
-    width={36}
-    height={36}
-    viewBox="0 0 36 36"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <linearGradient id="bubbleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="oklch(var(--p))" />
-        <stop offset="100%" stopColor="oklch(var(--s))" />
-      </linearGradient>
-    </defs>
-
-
-    <rect width="36" height="36" rx="9" fill="url(#bubbleGrad)" fillOpacity="0.1" />
-
-
-    <rect x="6" y="8" width="16" height="11" rx="4" fill="url(#bubbleGrad)" fillOpacity="0.4" />
-    <polygon points="8,19 6,25 14,19" fill="url(#bubbleGrad)" fillOpacity="0.4" />
-
- 
-    <rect x="14" y="17" width="16" height="11" rx="4" fill="url(#bubbleGrad)" />
-    <polygon points="28,28 30,34 22,28" fill="url(#bubbleGrad)" />
-  </svg>
-
-  <span
-    style={{
-      fontSize: 36 * 0.72,
-      fontWeight: "700",
-      letterSpacing: "-0.4px",
-      lineHeight: 1,
-    }}
-    className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-  >
-    Stream
-    <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Chat</span>
-  </span>
-
-</div>
+        <span
+          className="text-2xl font-bold tracking-tight leading-none bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+        >
+          StreamChat
+        </span>
+      </div>
+    </Link>
+  </div>
+)}
 
 
 
-
-
-          
-              </Link>
-            </div>
-          )}
-
-
-
-
-
-{!isChatPage && (
-   <div className="pl-1 lg:hidden">
-              <Link to="/" className="flex items-center gap-2.5" >
- 
-
-              
-   
-
-
-
-         <div className="mb-1 flex items-center justify-start gap-2">
-
-  <svg
-    width={36}
-    height={36}
-    viewBox="0 0 36 36"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <linearGradient id="bubbleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="oklch(var(--p))" />
-        <stop offset="100%" stopColor="oklch(var(--s))" />
-      </linearGradient>
-    </defs>
-
-
-    <rect width="36" height="36" rx="9" fill="url(#bubbleGrad)" fillOpacity="0.1" />
-
-
-    <rect x="6" y="8" width="16" height="11" rx="4" fill="url(#bubbleGrad)" fillOpacity="0.4" />
-    <polygon points="8,19 6,25 14,19" fill="url(#bubbleGrad)" fillOpacity="0.4" />
-
- 
-    <rect x="14" y="17" width="16" height="11" rx="4" fill="url(#bubbleGrad)" />
-    <polygon points="28,28 30,34 22,28" fill="url(#bubbleGrad)" />
-  </svg>
-
-  <span
-    style={{
-      fontSize: 36 * 0.72,
-      fontWeight: "700",
-      letterSpacing: "-0.4px",
-      lineHeight: 1,
-    }}
-    className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-  >
-    Stream
-    <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Chat</span>
-  </span>
-
-</div>
-
-
-
-
-
-          
-              </Link>
-            </div>
-)}      
 
     
           <div className="flex items-center gap-3 sm:gap-4 ml-auto">
