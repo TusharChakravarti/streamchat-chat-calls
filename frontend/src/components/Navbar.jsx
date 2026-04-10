@@ -41,6 +41,7 @@ const Navbar = () => {
     <rect x="14" y="17" width="16" height="11" rx="4" fill="#4ade80" />
     <polygon points="28,28 30,34 22,28" fill="#4ade80" />
   </svg>
+  
 
   <span style={{ fontSize: "26px", fontWeight: "700", letterSpacing: "-0.4px", lineHeight: 1 }}>
     <span style={{ color: "#4ade80" }}>Stream</span>
