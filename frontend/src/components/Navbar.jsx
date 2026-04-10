@@ -34,6 +34,7 @@ const Navbar = () => {
       <polygon points="8,19 6,25 14,19" className="fill-primary opacity-40" />
       <rect x="14" y="17" width="16" height="11" rx="4" className="fill-primary" />
       <polygon points="28,28 30,34 22,28" className="fill-primary" />
+      
     </svg>
 
     <span style={{ fontSize: "26px", fontWeight: "700", letterSpacing: "-0.4px", lineHeight: 1 }}>
