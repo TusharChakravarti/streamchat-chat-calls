@@ -29,8 +29,7 @@ const Navbar = () => {
     <div className="mb-4 flex items-center justify-start gap-2" data-theme={theme}>
         
 
-
-<div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+<div data-theme={theme} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
   <svg
     width={36}
     height={36}
@@ -45,15 +44,24 @@ const Navbar = () => {
 
   <span style={{ fontSize: "26px", fontWeight: "700", letterSpacing: "-0.4px", lineHeight: 1 }}>
     <span style={{ color: "#4ade80" }}>Stream</span>
-<span style={{ color: "oklch(var(--bc))" }}>Chat</span>
+    <span style={{ color: "oklch(var(--bc))" }}>Chat</span>
   </span>
 </div>
-
 
     
 
 
           </div>
+
+
+
+
+
+
+
+
+
+          
               </Link>
             </div>
           )}
