@@ -26,34 +26,21 @@ const Navbar = () => {
             <div className="pl-5">
               <Link to="/" className="flex items-center gap-2.5" >
                
-    <div className="mb-4 flex items-center justify-start gap-2" data-theme={theme}>
-        
+   <div className="mb-4 flex items-center justify-start gap-2" data-theme={theme}>
+  <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+    <svg width={36} height={36} viewBox="0 0 36 36" fill="none">
+      <rect x="6" y="8" width="16" height="11" rx="4" className="fill-primary opacity-40" />
+      <polygon points="8,19 6,25 14,19" className="fill-primary opacity-40" />
+      <rect x="14" y="17" width="16" height="11" rx="4" className="fill-primary" />
+      <polygon points="28,28 30,34 22,28" className="fill-primary" />
+    </svg>
 
-<div data-theme={theme} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-  <svg
-    width={36}
-    height={36}
-    viewBox="0 0 36 36"
-    fill="none"
-  >
-    <rect x="6" y="8" width="16" height="11" rx="4" fill="#4ade80" fillOpacity="0.4" />
-    <polygon points="8,19 6,25 14,19" fill="#4ade80" fillOpacity="0.4" />
-    <rect x="14" y="17" width="16" height="11" rx="4" fill="#4ade80" />
-    <polygon points="28,28 30,34 22,28" fill="#4ade80" />
-  </svg>
-  
-
-  <span style={{ fontSize: "26px", fontWeight: "700", letterSpacing: "-0.4px", lineHeight: 1 }}>
-    <span style={{ color: "#4ade80" }}>Stream</span>
-    <span style={{ color: "oklch(var(--bc))" }}>Chat</span>
-  </span>
+    <span style={{ fontSize: "26px", fontWeight: "700", letterSpacing: "-0.4px", lineHeight: 1 }}>
+      <span className="text-primary">Stream</span>
+      <span className="text-base-content">Chat</span>
+    </span>
+  </div>
 </div>
-
-    
-
-
-          </div>
-
 
 
 
