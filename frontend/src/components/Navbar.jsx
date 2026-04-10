@@ -3,12 +3,13 @@ import useAuthUser from "../hooks/useAuthUser";
 import { BellIcon, LogOutIcon, ShipWheelIcon } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 import useLogout from "../hooks/useLogout";
+import { useThemeStore } from "../store/useThemeStore";
 
 const Navbar = () => {
   const { authUser } = useAuthUser();
   const location = useLocation();
   const isChatPage = location.pathname?.startsWith("/chat");
-  const theme = localStorage.getItem("theme")
+   const {theme} = useThemeStore()
   // const queryClient = useQueryClient();
   // const { mutate: logoutMutation } = useMutation({
   //   mutationFn: logout,
