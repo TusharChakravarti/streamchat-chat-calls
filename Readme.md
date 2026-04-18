@@ -3,7 +3,7 @@
 ## 🌐 Live Demo
 
 🚀 Check out the live app here:  
-👉 https://streamchat-chat-calls.onrender.com
+👉 https://streamchat-chat-calls.vercel.app
 
 A modern full-stack Realtime Chat & Video Calling Application built with a powerful and scalable tech stack. This project demonstrates production-level architecture, clean code practices, and real-world features used in modern applications.
 
