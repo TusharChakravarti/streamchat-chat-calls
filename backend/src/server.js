@@ -26,6 +26,10 @@ app.use('/api/auth',authRoutes)
 app.use('/api/users',userRoutes)
 app.use('/api/chat', chatRoutes) 
 
+app.get('/ping', (req, res) => {
+  res.status(200).json({ status: 'alive' });
+});
+
 
 
 // if(process.env.NODE_ENV === "production"){
