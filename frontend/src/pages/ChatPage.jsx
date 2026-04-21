@@ -89,7 +89,7 @@ const ChatPage = () => {
       });
 
       toast.success("Video call link sent successfully!");
-        window.location.href = callUrl;
+         window.open(callUrl, '_blank');
 
     }
   };
