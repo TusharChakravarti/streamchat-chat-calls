@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser"
 import authRoutes from './routes/auth.route.js'
 import {connectDB} from './lib/db.js'
 import cors from 'cors'
+import './lib/passport.js' 
 // import path from "path"
 import userRoutes from './routes/user.route.js'
 import chatRoutes from './routes/chat.route.js'
@@ -20,8 +21,10 @@ app.use(cors({
     ],
     credentials:true // allow frontend to send cookies
 }))
+
 app.use(express.json())
 app.use(cookieParser())
+app.use(passport.initialize())
 app.use('/api/auth',authRoutes)
 app.use('/api/users',userRoutes)
 app.use('/api/chat', chatRoutes) 
@@ -30,7 +33,11 @@ app.get('/ping', (req, res) => {
   res.status(200).json({ status: 'alive' });
 });
 
+app.get("/test-email", async (req, res) => {
+//   await sendEmail("tusharch04092005@gmail.com", "Test", "Hello from app");
+ res.send("Email sent");
 
+});
 
 // if(process.env.NODE_ENV === "production"){
 //     app.use(express.static(path.join(__dirname,"../frontend/dist")))

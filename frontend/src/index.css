@@ -35,5 +35,5 @@
 }
 
 .str-chat__edit-message-form-options {
-  gap: 12px;  /* adds space between Cancel and Send */
+  gap: 12px; 
 }

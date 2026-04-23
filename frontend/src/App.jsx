@@ -9,10 +9,13 @@ import ChatPage from './pages/ChatPage'
 import OnboardingPage from './pages/OnboardingPage'
 import PageLoader from './components/PageLoader.jsx'
 
+
 import { Toaster } from 'react-hot-toast'
 import useAuthUser from './hooks/useAuthUser.js'
 import Layout  from './components/Layout.jsx'
-
+import ForgotPasswordPage from './pages/ForgetPasswordPage.jsx'
+import ResetPasswordPage from "./pages/ResetPasswordPage.jsx"
+import VerifyEmailPage from "./pages/VerifyEmailPage.jsx"
 const App = () => {
   // tanstack query
   const {isLoading, authUser}  = useAuthUser()
@@ -39,6 +42,9 @@ const App = () => {
         <Route path = "/login" element={!isAuthenticated?<LoginPage />:<Navigate to={
           isOnboarded?"/":"/onboarding"
         }/>} />
+<Route path="/verify-email" element={<VerifyEmailPage />} />
+<Route path="/forgot-password" element={<ForgotPasswordPage />} />
+<Route path="/reset-password" element={<ResetPasswordPage />} />
       
 
   <Route
@@ -101,6 +107,9 @@ const App = () => {
           
           :
           (<Navigate to="/login"/>)} />
+        
+
+
       
    </Routes>
      <Toaster/>
