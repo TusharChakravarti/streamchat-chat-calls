@@ -3,7 +3,7 @@ import useAuthUser from "../hooks/useAuthUser";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { completeOnboarding } from "../lib/api";
-import { LoaderIcon, MapPinIcon, ShipWheelIcon, ShuffleIcon } from "lucide-react";
+import { LoaderIcon, MapPinIcon, ShuffleIcon, ShipWheelIcon } from "lucide-react";
 import { LANGUAGES } from "../constants";
 
 const OnboardingPage = () => {
@@ -25,7 +25,6 @@ const OnboardingPage = () => {
       toast.success("Profile onboarded successfully");
       queryClient.invalidateQueries({ queryKey: ["authUser"] });
     },
-
     onError: (error) => {
       toast.error(error.response.data.message);
     },
@@ -33,162 +32,247 @@ const OnboardingPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     onboardingMutation(formState);
   };
 
   const handleRandomAvatar = () => {
-    const idx = Math.floor(Math.random() * 100) + 1; // 1-100 included
+    const idx = Math.floor(Math.random() * 100) + 1;
     const randomAvatar = `https://api.dicebear.com/9.x/toon-head/svg?seed=${idx}`;
-
     setFormState({ ...formState, profilePic: randomAvatar });
-    toast.success("Random profile picture generated!");
+    toast.success("Random avatar generated!");
   };
 
   return (
-    <div className="min-h-screen bg-base-100 flex items-center justify-center p-4">
-      <div className="card bg-base-200 w-full max-w-3xl shadow-xl">
-        <div className="card-body p-6 sm:p-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6">Complete Your Profile</h1>
+    <div style={{
+      minHeight: "100vh", background: "#0d0d1a",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      padding: "32px 20px", fontFamily: "'DM Sans', sans-serif",
+    }}>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
+        * { box-sizing: border-box; }
+        .ob-input {
+          width: 100%; padding: 11px 14px;
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 10px; color: #f1f0ff;
+          font-size: 14px; font-family: 'DM Sans', sans-serif;
+          outline: none; transition: border-color 0.2s;
+        }
+        .ob-input:focus { border-color: rgba(124,58,237,0.6); background: rgba(255,255,255,0.07); }
+        .ob-input::placeholder { color: rgba(255,255,255,0.25); }
+        .ob-select {
+          width: 100%; padding: 11px 14px;
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 10px; color: #f1f0ff;
+          font-size: 14px; font-family: 'DM Sans', sans-serif;
+          outline: none; transition: border-color 0.2s;
+          appearance: none; cursor: pointer;
+        }
+        .ob-select:focus { border-color: rgba(124,58,237,0.6); }
+        .ob-select option { background: #13131f; color: #f1f0ff; }
+        .ob-textarea {
+          width: 100%; padding: 11px 14px;
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,255,255,0.1);
+          border-radius: 10px; color: #f1f0ff;
+          font-size: 14px; font-family: 'DM Sans', sans-serif;
+          outline: none; transition: border-color 0.2s;
+          resize: vertical; min-height: 90px;
+        }
+        .ob-textarea:focus { border-color: rgba(124,58,237,0.6); }
+        .ob-textarea::placeholder { color: rgba(255,255,255,0.25); }
+        .ob-label {
+          display: block; font-size: 13px; font-weight: 500;
+          color: rgba(255,255,255,0.6); margin-bottom: 7px;
+        }
+        .ob-btn-primary {
+          width: 100%; padding: 13px;
+          background: linear-gradient(135deg, #7c3aed, #a855f7);
+          border: none; border-radius: 10px;
+          color: #fff; font-size: 14px; font-weight: 600;
+          font-family: 'DM Sans', sans-serif;
+          cursor: pointer; transition: opacity 0.2s;
+          display: flex; align-items: center; justify-content: center; gap: 8px;
+        }
+        .ob-btn-primary:hover { opacity: 0.88; }
+        .ob-btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+        .ob-btn-secondary {
+          display: flex; align-items: center; gap: 8px;
+          padding: 9px 18px; border-radius: 10px;
+          background: rgba(124,58,237,0.12);
+          border: 1px solid rgba(124,58,237,0.3);
+          color: #a78bfa; font-size: 13px; font-weight: 600;
+          font-family: 'DM Sans', sans-serif;
+          cursor: pointer; transition: all 0.2s;
+        }
+        .ob-btn-secondary:hover { background: rgba(124,58,237,0.2); }
+        @keyframes sc-spin { to { transform: rotate(360deg); } }
+      `}</style>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* PROFILE PIC CONTAINER */}
-            <div className="flex flex-col items-center justify-center space-y-4">
-              {/* IMAGE PREVIEW */}
-              <div className="size-32 rounded-full bg-base-300 overflow-hidden">
-                {formState.profilePic ? (
-                  <img
-                    src={formState.profilePic}
-                    alt="Profile Preview"
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="flex items-center justify-center h-full">
-                    <CameraIcon className="size-12 text-base-content opacity-40" />
-                  </div>
-                )}
-              </div>
+      <div style={{
+        width: "100%", maxWidth: "600px",
+        background: "#0a0a14",
+        border: "1px solid rgba(255,255,255,0.08)",
+        borderRadius: "20px",
+        padding: "40px",
+        boxShadow: "0 24px 80px rgba(0,0,0,0.4)",
+      }}>
+        {/* Header */}
+        <div style={{ textAlign: "center", marginBottom: "32px" }}>
+          <div style={{
+            width: "44px", height: "44px", borderRadius: "12px",
+            background: "linear-gradient(135deg, #7c3aed, #a855f7)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            margin: "0 auto 16px",
+          }}>
+         
+                 <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+  </defs>
 
-              {/* Generate Random Avatar BTN */}
-              <div className="flex items-center gap-2">
-                <button type="button" onClick={handleRandomAvatar} className="btn btn-accent">
-                  <ShuffleIcon className="size-4 mr-2" />
-                  Generate Random Avatar
-                </button>
-              </div>
+ 
+  <rect width="32" height="32" rx="8" fill="url(#bg)"/>
+
+  
+  <rect x="5" y="7" width="14" height="10" rx="3.5" fill="white" fill-opacity="0.45"/>
+  <polygon points="7,17 5,22 12,17" fill="white" fill-opacity="0.45"/>
+
+  
+  <rect x="13" y="15" width="14" height="10" rx="3.5" fill="white"/>
+  <polygon points="25,25 27,30 20,25" fill="white"/>
+</svg>
+          </div>
+          <h1 style={{ margin: "0 0 8px", fontSize: "24px", fontWeight: "800", color: "#f1f0ff", fontFamily: "'Syne', sans-serif" }}>
+            Complete Your Profile
+          </h1>
+          <p style={{ margin: 0, fontSize: "14px", color: "rgba(255,255,255,0.4)" }}>
+            Set up your profile to connect with language partners
+          </p>
+        </div>
+
+        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+
+          {/* Avatar */}
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "14px" }}>
+            <div style={{
+              width: "96px", height: "96px", borderRadius: "50%",
+              background: "rgba(255,255,255,0.05)",
+              border: "2px solid rgba(124,58,237,0.3)",
+              overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center",
+            }}>
+              {formState.profilePic ? (
+                <img src={formState.profilePic} alt="Profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              ) : (
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                </svg>
+              )}
             </div>
+            <button type="button" onClick={handleRandomAvatar} className="ob-btn-secondary">
+              <ShuffleIcon size={14} />
+              Generate Random Avatar
+            </button>
+          </div>
 
-            {/* FULL NAME */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Full Name</span>
-              </label>
-              <input
-                type="text"
-                name="fullName"
-                value={formState.fullName}
-                onChange={(e) => setFormState({ ...formState, fullName: e.target.value })}
-                className="input input-bordered w-full"
-                placeholder="Your full name"
-              />
-            </div>
+          {/* Full Name */}
+          <div>
+            <label className="ob-label">Full Name</label>
+            <input type="text" placeholder="Your full name" className="ob-input"
+              value={formState.fullName}
+              onChange={(e) => setFormState({ ...formState, fullName: e.target.value })}
+            />
+          </div>
 
-            {/* BIO */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Bio</span>
-              </label>
-              <textarea
-                name="bio"
-                value={formState.bio}
-                onChange={(e) => setFormState({ ...formState, bio: e.target.value })}
-                className="textarea textarea-bordered h-24"
-                placeholder="Tell others about yourself and your language learning goals"
-              />
-            </div>
+          {/* Bio */}
+          <div>
+            <label className="ob-label">Bio</label>
+            <textarea placeholder="Tell others about yourself and your language learning goals..."
+              className="ob-textarea"
+              value={formState.bio}
+              onChange={(e) => setFormState({ ...formState, bio: e.target.value })}
+            />
+          </div>
 
-            {/* LANGUAGES */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* NATIVE LANGUAGE */}
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Native Language</span>
-                </label>
-                <select
-                  name="nativeLanguage"
+          {/* Languages */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px" }}>
+            <div>
+              <label className="ob-label">Native Language</label>
+              <div style={{ position: "relative" }}>
+                <select className="ob-select"
                   value={formState.nativeLanguage}
                   onChange={(e) => setFormState({ ...formState, nativeLanguage: e.target.value })}
-                  className="select select-bordered w-full"
                 >
-                  <option value="">Select your native language</option>
+                  <option value="">Select native language</option>
                   {LANGUAGES.map((lang) => (
-                    <option key={`native-${lang}`} value={lang.toLowerCase()}>
-                      {lang}
-                    </option>
+                    <option key={`native-${lang}`} value={lang.toLowerCase()}>{lang}</option>
                   ))}
                 </select>
+                <svg style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
+                  width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
               </div>
+            </div>
 
-              {/* LEARNING LANGUAGE */}
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Learning Language</span>
-                </label>
-                <select
-                  name="learningLanguage"
+            <div>
+              <label className="ob-label">Learning Language</label>
+              <div style={{ position: "relative" }}>
+                <select className="ob-select"
                   value={formState.learningLanguage}
                   onChange={(e) => setFormState({ ...formState, learningLanguage: e.target.value })}
-                  className="select select-bordered w-full"
                 >
-                  <option value="">Select language you're learning</option>
+                  <option value="">Select learning language</option>
                   {LANGUAGES.map((lang) => (
-                    <option key={`learning-${lang}`} value={lang.toLowerCase()}>
-                      {lang}
-                    </option>
+                    <option key={`learning-${lang}`} value={lang.toLowerCase()}>{lang}</option>
                   ))}
                 </select>
+                <svg style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
+                  width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
               </div>
             </div>
+          </div>
 
-            {/* LOCATION */}
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Location</span>
-              </label>
-              <div className="relative">
-                <MapPinIcon className="absolute top-1/2 transform -translate-y-1/2 left-3 size-5 text-base-content opacity-70" />
-                <input
-                  type="text"
-                  name="location"
-                  value={formState.location}
-                  onChange={(e) => setFormState({ ...formState, location: e.target.value })}
-                  className="input input-bordered w-full pl-10"
-                  placeholder="City, Country"
-                />
-              </div>
+          {/* Location */}
+          <div>
+            <label className="ob-label">Location</label>
+            <div style={{ position: "relative" }}>
+              <MapPinIcon size={16} style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", color: "rgba(255,255,255,0.3)" }} />
+              <input type="text" placeholder="City, Country" className="ob-input"
+                style={{ paddingLeft: "36px" }}
+                value={formState.location}
+                onChange={(e) => setFormState({ ...formState, location: e.target.value })}
+              />
             </div>
+          </div>
 
-            {/* SUBMIT BUTTON */}
-
-            <button className="btn btn-primary w-full" disabled={isPending} type="submit">
-              {!isPending ? (
-                <>
-                  <ShipWheelIcon className="size-5 mr-2" />
-                  Complete Onboarding
-                </>
-              ) : (
-                <>
-                  <LoaderIcon className="animate-spin size-5 mr-2" />
-                  Onboarding...
-                </>
-              )}
-            </button>
-          </form>
-        </div>
+          {/* Submit */}
+          <button type="submit" className="ob-btn-primary" disabled={isPending}>
+            {isPending ? (
+              <>
+                <span style={{ width: "16px", height: "16px", borderRadius: "50%", border: "2px solid rgba(255,255,255,0.3)", borderTop: "2px solid #fff", animation: "sc-spin 0.75s linear infinite", display: "inline-block" }} />
+                Saving profile...
+              </>
+            ) : (
+              <>
+                <ShipWheelIcon size={16} />
+                Complete Onboarding
+              </>
+            )}
+          </button>
+        </form>
       </div>
     </div>
   );
 };
+
 export default OnboardingPage;
 
 
