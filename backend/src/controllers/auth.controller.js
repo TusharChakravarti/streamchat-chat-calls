@@ -227,8 +227,22 @@ export async function onboard(req, res) {
 
 export function googleCallback(req, res) {
 
-  issueToken(req.user._id, res)
-  res.redirect(`${process.env.CLIENT_URL}/`)
+   const token = jwt.sign(
+    { userId: req.user._id },
+    process.env.JWT_SECRET_KEY,
+    { expiresIn: '7d' }
+  )
+
+
+  res.cookie('jwt', token, {
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+    sameSite: 'None',
+    secure: true,
+  })
+
+
+  res.redirect(`${process.env.CLIENT_URL}/google-callback?token=${token}`)
 }
 
 
