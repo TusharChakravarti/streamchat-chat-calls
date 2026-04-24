@@ -18,7 +18,7 @@ const FriendCard = ({ friend }) => {
   const color = getAvatarColor(friend.fullName);
   const initials = friend.fullName?.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
 
-  // ✅ Reads isOnline from backend — NOT hardcoded
+ 
   const isOnline = friend.isOnline === true;
 
   return (
