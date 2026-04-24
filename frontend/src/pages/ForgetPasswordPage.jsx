@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import axios from "axios";
+import { axiosInstance } from "../lib/axios.js";
 
 const Logo = () => (
   <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -43,14 +43,14 @@ const ForgotPasswordPage = () => {
     setError("");
     setIsPending(true);
     try {
-      await axios.post("/api/auth/forgot-password", { email });
+      await axiosInstance.post("/auth/forgot-password", { email });
       setSent(true);
     } catch (err) {
       setError(err.response?.data?.message || "Something went wrong. Please try again.");
     } finally {
       setIsPending(false);
     }
-  };  
+  };
 
   return (
     <div style={{
@@ -123,7 +123,7 @@ const ForgotPasswordPage = () => {
               </span>
             </p>
             <Link to="/login" style={{
-              marginTop: "4px", padding: "5px 28px", borderRadius: "10px",
+              marginTop: "8px", padding: "10px 28px", borderRadius: "10px",
               background: "linear-gradient(135deg, #7c3aed, #a855f7)",
               color: "#fff", fontSize: "13px", fontWeight: "600", textDecoration: "none",
             }}>
@@ -132,9 +132,35 @@ const ForgotPasswordPage = () => {
           </div>
         ) : (
           <>
-       
+            {/* Back arrow */}
+            <Link to="/login" style={{
+              display: "inline-flex", alignItems: "center", gap: "6px",
+              color: "rgba(255,255,255,0.4)", fontSize: "13px", textDecoration: "none",
+              marginBottom: "24px", transition: "color 0.2s",
+            }}
+              onMouseEnter={e => e.currentTarget.style.color = "#a78bfa"}
+              onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.4)"}
+            >
+              <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path d="M19 12H5M12 5l-7 7 7 7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              Back to Sign In
+            </Link>
 
-        <h2 style={{ margin: "0 0 6px", fontSize: "22px", fontWeight: "700", color: "#f1f0ff", fontFamily: "'Syne', sans-serif" }}>
+            <div style={{
+              width: "52px", height: "52px", borderRadius: "14px",
+              background: "linear-gradient(135deg, rgba(124,58,237,0.2), rgba(168,85,247,0.2))",
+              border: "1px solid rgba(124,58,237,0.3)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              marginBottom: "20px",
+            }}>
+              <svg width="24" height="24" fill="none" stroke="#a78bfa" strokeWidth="1.8" viewBox="0 0 24 24">
+                <rect x="3" y="11" width="18" height="11" rx="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" strokeLinecap="round" />
+              </svg>
+            </div>
+
+            <h2 style={{ margin: "0 0 6px", fontSize: "22px", fontWeight: "700", color: "#f1f0ff", fontFamily: "'Syne', sans-serif" }}>
               Forgot Password?
             </h2>
             <p style={{ margin: "0 0 28px", fontSize: "14px", color: "rgba(255,255,255,0.4)", lineHeight: "1.6" }}>
@@ -173,22 +199,6 @@ const ForgotPasswordPage = () => {
                   </span>
                 ) : "Send Reset Link"}
               </button>
-
-                   {/* Back arrow */}
-                   
-            <Link to="/login" style={{
-              display: "inline-flex", alignItems: "center", justifyContent:"center", gap: "6px",
-              color: "rgba(255,255,255,0.4)", fontSize: "13px", textDecoration: "none",
-              marginBottom: "24px", transition: "color 0.2s",
-            }}
-              onMouseEnter={e => e.currentTarget.style.color = "#a78bfa"}
-              onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.4)"}
-            >
-              <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path d="M19 12H5M12 5l-7 7 7 7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              Back to Sign In
-            </Link>
             </form>
           </>
         )}
