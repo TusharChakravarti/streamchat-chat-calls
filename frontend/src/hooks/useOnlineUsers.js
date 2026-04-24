@@ -11,7 +11,7 @@ const useOnlineUsers = ()=>{
 if(!authUser) return;
 
 if(!socket){
-    socket = io(import.meta.env.VITE_BACKEND_URL||"http://localhost:5001",
+    socket = io('https://streamchat-chat-calls.onrender.com'||"http://localhost:5001",
         {
 query:{ userId:authUser._id },
     withCredentials:true,
