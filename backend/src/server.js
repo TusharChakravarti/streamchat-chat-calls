@@ -33,11 +33,6 @@ app.get('/ping', (req, res) => {
   res.status(200).json({ status: 'alive' });
 });
 
-app.get("/test-email", async (req, res) => {
-//   await sendEmail("tusharch04092005@gmail.com", "Test", "Hello from app");
- res.send("Email sent");
-
-});
 
 // if(process.env.NODE_ENV === "production"){
 //     app.use(express.static(path.join(__dirname,"../frontend/dist")))
