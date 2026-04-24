@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router";
+import { Link, useSearchParams, useNavigate } from "react-router";
+import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 const Logo = () => (
@@ -29,6 +30,8 @@ const Logo = () => (
 
 const VerifyEmailPage = () => {
   const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const token = searchParams.get("token");
 
   const [status, setStatus] = useState("loading"); // "loading" | "success" | "error"
@@ -139,8 +142,12 @@ const VerifyEmailPage = () => {
                 Your account is now active. Welcome to StreamChat — you're all set to connect with language partners worldwide.
               </p>
             </div>
-            <Link
-              to="/"
+            <button
+              onClick={async () => {
+                // Force auth query to re-fetch so App.jsx sees the new cookie
+                await queryClient.invalidateQueries({ queryKey: ["authUser"] });
+                navigate("/");
+              }}
               style={{
                 marginTop: "4px",
                 padding: "12px 32px",
@@ -152,10 +159,13 @@ const VerifyEmailPage = () => {
                 textDecoration: "none",
                 width: "100%",
                 display: "block",
+                border: "none",
+                cursor: "pointer",
+                fontFamily: "'DM Sans', sans-serif",
               }}
             >
               Go to StreamChat →
-            </Link>
+            </button>
           </>
         )}
 

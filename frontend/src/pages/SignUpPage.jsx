@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import axios from "axios";
 import useSignUp from "../hooks/useSignUp";
 
 const Logo = () => (
@@ -50,40 +51,73 @@ const Divider = () => (
 );
 
 // Shown after successful signup — prompts user to check email
-const EmailSentScreen = ({ email }) => (
-  <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flex: 1, textAlign: "center", gap: "16px" }}>
-    <div style={{
-      width: "64px", height: "64px", borderRadius: "16px",
-      background: "linear-gradient(135deg, rgba(124,58,237,0.2), rgba(168,85,247,0.2))",
-      border: "1px solid rgba(124,58,237,0.3)",
-      display: "flex", alignItems: "center", justifyContent: "center",
-    }}>
-      <svg width="28" height="28" fill="none" stroke="#a78bfa" strokeWidth="1.8" viewBox="0 0 24 24">
-        <path d="M3 8l9 6 9-6" /><rect x="3" y="6" width="18" height="13" rx="2" />
-      </svg>
-    </div>
-    <div>
-      <h3 style={{ margin: "0 0 8px", fontSize: "20px", fontWeight: "700", color: "#f1f0ff", fontFamily: "'Syne', sans-serif" }}>
-        Check your inbox
-      </h3>
-      <p style={{ margin: 0, fontSize: "13px", color: "rgba(255,255,255,0.45)", lineHeight: "1.7" }}>
-        We sent a verification link to<br />
-        <span style={{ color: "#a78bfa", fontWeight: "600" }}>{email}</span>
+const EmailSentScreen = ({ email }) => {
+  const [resendStatus, setResendStatus] = useState("idle"); // "idle" | "sending" | "sent" | "error"
+
+  const handleResend = async () => {
+    setResendStatus("sending");
+    try {
+      await axios.post("/api/auth/resend-verification", { email }, { withCredentials: true });
+      setResendStatus("sent");
+      // Reset back to idle after 4 seconds
+      setTimeout(() => setResendStatus("idle"), 4000);
+    } catch {
+      setResendStatus("error");
+      setTimeout(() => setResendStatus("idle"), 4000);
+    }
+  };
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flex: 1, textAlign: "center", gap: "16px" }}>
+      <div style={{
+        width: "64px", height: "64px", borderRadius: "16px",
+        background: "linear-gradient(135deg, rgba(124,58,237,0.2), rgba(168,85,247,0.2))",
+        border: "1px solid rgba(124,58,237,0.3)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>
+        <svg width="28" height="28" fill="none" stroke="#a78bfa" strokeWidth="1.8" viewBox="0 0 24 24">
+          <path d="M3 8l9 6 9-6" /><rect x="3" y="6" width="18" height="13" rx="2" />
+        </svg>
+      </div>
+      <div>
+        <h3 style={{ margin: "0 0 8px", fontSize: "20px", fontWeight: "700", color: "#f1f0ff", fontFamily: "'Syne', sans-serif" }}>
+          Check your inbox
+        </h3>
+        <p style={{ margin: 0, fontSize: "13px", color: "rgba(255,255,255,0.45)", lineHeight: "1.7" }}>
+          We sent a verification link to<br />
+          <span style={{ color: "#a78bfa", fontWeight: "600" }}>{email}</span>
+        </p>
+      </div>
+
+      {/* Resend row */}
+      <p style={{ margin: "4px 0 0", fontSize: "12px", color: "rgba(255,255,255,0.25)", lineHeight: "1.6" }}>
+        Didn't receive it? Check your spam folder or{" "}
+        {resendStatus === "sending" ? (
+          <span style={{ color: "rgba(167,139,250,0.5)" }}>Sending...</span>
+        ) : resendStatus === "sent" ? (
+          <span style={{ color: "#4ade80" }}>✓ Sent! Check your inbox</span>
+        ) : resendStatus === "error" ? (
+          <span style={{ color: "#f87171" }}>Failed. Try again.</span>
+        ) : (
+          <span
+            onClick={handleResend}
+            style={{ color: "#a78bfa", cursor: "pointer", textDecoration: "underline" }}
+          >
+            resend the email
+          </span>
+        )}
       </p>
+
+      <Link to="/login" style={{
+        marginTop: "8px", padding: "10px 24px", borderRadius: "10px",
+        background: "linear-gradient(135deg, #7c3aed, #a855f7)",
+        color: "#fff", fontSize: "13px", fontWeight: "600", textDecoration: "none",
+      }}>
+        Back to Sign In
+      </Link>
     </div>
-    <p style={{ margin: "8px 0 0", fontSize: "12px", color: "rgba(255,255,255,0.25)", lineHeight: "1.6" }}>
-      Didn't receive it? Check your spam folder or{" "}
-      <span style={{ color: "#a78bfa", cursor: "pointer", textDecoration: "underline" }}>resend the email</span>
-    </p>
-    <Link to="/login" style={{
-      marginTop: "8px", padding: "10px 24px", borderRadius: "10px",
-      background: "linear-gradient(135deg, #7c3aed, #a855f7)",
-      color: "#fff", fontSize: "13px", fontWeight: "600", textDecoration: "none",
-    }}>
-      Back to Sign In
-    </Link>
-  </div>
-);
+  );
+};
 
 const SignUpPage = () => {
   const [signupData, setSignupData] = useState({ fullName: "", email: "", password: "" });
