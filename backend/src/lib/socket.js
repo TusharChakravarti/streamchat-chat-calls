@@ -10,7 +10,7 @@ export const getRecieverSocketId = (userId) => onlineUsers[userId]
 export const initSocket = (httpServer) =>{
     const io = new Server(httpServer,{
         cors:{
-            origin:process.env.CLIENT_URL,
+            origin:'https://streamchat-chat-calls.vercel.app',
             credentials:true
         }
 
