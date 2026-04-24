@@ -57,7 +57,7 @@ const EmailSentScreen = ({ email }) => {
   const handleResend = async () => {
     setResendStatus("sending");
     try {
-      await axiosInstance.post("/resend-verification", { email }, { withCredentials: true });
+      await axiosInstance.post("auth/resend-verification", { email }, { withCredentials: true });
       setResendStatus("sent");
       // Reset back to idle after 4 seconds
       setTimeout(() => setResendStatus("idle"), 4000);
