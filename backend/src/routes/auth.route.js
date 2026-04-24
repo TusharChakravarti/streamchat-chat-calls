@@ -29,7 +29,9 @@ router.post('/reset-password', resetPassword)
 
 router.get(
   '/google',
-  passport.authenticate('google', { scope: ['profile', 'email'], session: false })
+  passport.authenticate('google', { scope: ['profile', 'email'], session: false,
+    
+   })
 )
 
 
