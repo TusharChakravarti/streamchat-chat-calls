@@ -133,12 +133,12 @@ const LoginPage = () => {
           )}
 
           {/* Google OAuth Button */}
-          <a href="https://streamchat-chat-calls.onrender.com/api/auth/google" className="sc-btn-google" style={{ marginBottom: "20px" }}>
+          <a href="/api/auth/google" className="sc-btn-google" style={{ marginBottom: "20px" }}>
             <GoogleIcon />
             Continue with Google
           </a>
 
-          <Divider />
+
 
           <form onSubmit={handleLogin} style={{ display: "flex", flexDirection: "column", gap: "18px", marginTop: "20px" }}>
             <div>
