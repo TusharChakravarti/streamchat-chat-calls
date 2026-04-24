@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import { axiosInstance } from "../lib/axios.js"
+import { axiosInstance } from "../lib/axios.js";
 import useSignUp from "../hooks/useSignUp";
 
 const Logo = () => (
@@ -57,9 +57,9 @@ const EmailSentScreen = ({ email }) => {
   const handleResend = async () => {
     setResendStatus("sending");
     try {
-      await axios.post("/auth/resend-verification", { email }, { withCredentials: true });
+      await axiosInstance.post("/auth/resend-verification", { email });
       setResendStatus("sent");
-      // Reset back to idle after 4 seconds
+     
       setTimeout(() => setResendStatus("idle"), 4000);
     } catch {
       setResendStatus("error");
