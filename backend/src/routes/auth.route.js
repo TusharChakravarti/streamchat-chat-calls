@@ -11,6 +11,7 @@ import {
   googleCallback,
   forgotPassword,
   resetPassword,
+  setGoogleToken
 } from '../controllers/auth.controller.js'
 
 const router = express.Router()
@@ -44,6 +45,7 @@ router.get(
   googleCallback
 )
 
+router.post('/google/token', setGoogleToken)
 
 router.post('/onboarding', protectRoute, onboard)
 router.get('/me', protectRoute, (req, res) => {

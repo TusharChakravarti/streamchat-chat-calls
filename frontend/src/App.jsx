@@ -14,9 +14,9 @@ import Layout from './components/Layout.jsx'
 import ForgotPasswordPage from './pages/ForgetPasswordPage.jsx'
 import ResetPasswordPage from "./pages/ResetPasswordPage.jsx"
 import VerifyEmailPage from "./pages/VerifyEmailPage.jsx"
+import GoogleCallbackPage from "./pages/GoogleCallbackPage.jsx"
 
-
-const PUBLIC_ONLY_ROUTES = ["/verify-email", "/forgot-password", "/reset-password"]
+const PUBLIC_ONLY_ROUTES = ["/verify-email", "/forgot-password", "/reset-password", "/google-callback"]
 
 const App = () => {
   const { isLoading, authUser } = useAuthUser()
@@ -92,6 +92,8 @@ const App = () => {
             <Navigate to="/login" />
           )
         } />
+
+        <Route path="/google-callback" element={<GoogleCallbackPage />} />
 
       </Routes>
       <Toaster />

@@ -311,3 +311,27 @@ export async function resetPassword(req, res) {
     res.status(500).json({ message: 'Internal Server error' })
   }
 }
+
+export function setGoogleToken(req, res) {
+  const { token } = req.body
+
+  if (!token) {
+    return res.status(400).json({ message: "Token is required" })
+  }
+
+  // Verify the token is valid before setting the cookie
+  try {
+    jwt.verify(token, process.env.JWT_SECRET_KEY)
+  } catch {
+    return res.status(401).json({ message: "Invalid token" })
+  }
+
+  res.cookie('jwt', token, {
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+    sameSite: 'None',
+    secure: true,
+  })
+
+  res.status(200).json({ success: true })
+}
