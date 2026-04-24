@@ -19,7 +19,8 @@ const FriendCard = ({ friend }) => {
   const initials = friend.fullName?.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
 
  
-  const isOnline = friend.isOnline === true;
+const {isUserOnline} = useOnlineUsers();
+const isOnline = isUserOnline(friend._id)
 
   return (
     <div
