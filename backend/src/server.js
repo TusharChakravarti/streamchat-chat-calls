@@ -1,17 +1,25 @@
 import express from "express"
 // import dotenv from 'dotenv'
 // dotenv.config()
+import http from "http";
 import "dotenv/config"
 import cookieParser from "cookie-parser"
 import authRoutes from './routes/auth.route.js'
 import {connectDB} from './lib/db.js'
+import { initSocket } from "./lib/socket.js"
 import cors from 'cors'
 import passport from './lib/passport.js' 
 // import path from "path"
+
 import userRoutes from './routes/user.route.js'
 import chatRoutes from './routes/chat.route.js'
+
 const app = express()
 const PORT = process.env.PORT
+
+const httpServer = http.createServer(app);
+
+initSocket(httpServer)
 
 // const __dirname = path.resolve()
 
@@ -40,7 +48,7 @@ app.get('/ping', (req, res) => {
 // }
 
     connectDB()
-app.listen(PORT,()=>{
+httpServer.listen(PORT,()=>{
     console.log(`Server is running on this port ${PORT}`)
 
 })

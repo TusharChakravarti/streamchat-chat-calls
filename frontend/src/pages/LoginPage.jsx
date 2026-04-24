@@ -138,7 +138,7 @@ const LoginPage = () => {
             Continue with Google
           </a>
 
-
+              <Divider />
 
           <form onSubmit={handleLogin} style={{ display: "flex", flexDirection: "column", gap: "18px", marginTop: "20px" }}>
             <div>
