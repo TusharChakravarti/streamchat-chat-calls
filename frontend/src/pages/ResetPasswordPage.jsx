@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useSearchParams, useNavigate } from "react-router";
-import axiosInstance from "../lib/axios.js"
+import { axiosInstance } from "../lib/axios.js"
 
 const Logo = () => (
   <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
