@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams, useNavigate } from "react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import axiosInstance from "../lib/axios";
+import { axiosInstance } from "../lib/axios";
 
 const Logo = () => (
   <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>

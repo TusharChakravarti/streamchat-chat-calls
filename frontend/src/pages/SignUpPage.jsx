@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import axiosInstance from "../lib/axios.js"
+import { axiosInstance } from "../lib/axios.js"
 import useSignUp from "../hooks/useSignUp";
 
 const Logo = () => (
