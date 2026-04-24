@@ -139,7 +139,7 @@ const VerifyEmailPage = () => {
                 Your account is now active. Welcome to StreamChat — you're all set to connect with language partners worldwide.
               </p>
             </div>
-            {/* <Link
+            <Link
               to="/"
               style={{
                 marginTop: "4px",
@@ -155,27 +155,7 @@ const VerifyEmailPage = () => {
               }}
             >
               Go to StreamChat →
-            </Link> */}
-            <button
-  onClick={async () => {
-    await queryClient.invalidateQueries({ queryKey: ["authUser"] });
-    navigate("/");
-  }}
-  style={{
-    marginTop: "4px",
-    padding: "12px 32px",
-    borderRadius: "10px",
-    background: "linear-gradient(135deg, #7c3aed, #a855f7)",
-    color: "#fff",
-    fontSize: "14px",
-    fontWeight: "600",
-    border: "none",
-    cursor: "pointer",
-    width: "100%",
-  }}
->
-  Go to StreamChat →
-</button>
+            </Link>
           </>
         )}
 
