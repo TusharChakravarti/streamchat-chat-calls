@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams, useNavigate } from "react-router";
 import { useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import axiosInstance from "../lib/axios";
 
 const Logo = () => (
   <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -46,7 +46,7 @@ const VerifyEmailPage = () => {
 
     const verify = async () => {
       try {
-        await axios.get(`/api/auth/verify-email?token=${token}`, {
+        await axiosInstance.get(`/auth/verify-email?token=${token}`, {
           withCredentials: true,
         });
         setStatus("success");

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useSearchParams, useNavigate } from "react-router";
-import axios from "axios";
+import axiosInstance from "../lib/axios.js"
 
 const Logo = () => (
   <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -53,8 +53,8 @@ const ResetPasswordPage = () => {
 
     setIsPending(true);
     try {
-      await axios.post(
-        "/api/auth/reset-password",
+      await axiosInstance.post(
+        "/auth/reset-password",
         { token, newPassword },
         { withCredentials: true }
       );
