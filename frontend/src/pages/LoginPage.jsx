@@ -133,7 +133,7 @@ const LoginPage = () => {
           )}
 
           {/* Google OAuth Button */}
-          <a href="/auth/google" className="sc-btn-google" style={{ marginBottom: "20px" }}>
+          <a href="https://streamchat-chat-calls.onrender.com/auth/google" className="sc-btn-google" style={{ marginBottom: "20px" }}>
             <GoogleIcon />
             Continue with Google
           </a>
@@ -171,7 +171,7 @@ const LoginPage = () => {
             </div>
             <div style={{ textAlign: "right" }}>
     <Link
-      to="/forgot-password"
+      to="https://streamchat-chat-calls.onrender.com/forgot-password"
       style={{
         fontSize: "12px",
         color: "#a78bfa",
