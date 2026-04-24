@@ -43,7 +43,7 @@ const ForgotPasswordPage = () => {
     setError("");
     setIsPending(true);
     try {
-      await axiosInstance.post("/forgot-password", { email });
+      await axiosInstance.post("auth/forgot-password", { email });
       setSent(true);
     } catch (err) {
       setError(err.response?.data?.message || "Something went wrong. Please try again.");
