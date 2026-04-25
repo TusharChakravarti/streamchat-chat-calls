@@ -31,9 +31,12 @@ const ChatLoader = () => {
           display: "flex", alignItems: "center", justifyContent: "center",
           animation: "sc-pulse 1.5s ease-in-out infinite",
         }}>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-            <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
-          </svg>
+          <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="7" width="14" height="10" rx="3.5" fill="white" fillOpacity="0.45" />
+                <polygon points="7,17 5,22 12,17" fill="white" fillOpacity="0.45" />
+                <rect x="13" y="15" width="14" height="10" rx="3.5" fill="white" />
+                <polygon points="25,25 27,30 20,25" fill="white" />
+              </svg>
         </div>
 
         {/* Spinner ring */}
