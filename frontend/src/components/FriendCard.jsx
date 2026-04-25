@@ -77,7 +77,7 @@ const isOnline = isUserOnline(friend._id)
           <p style={{ margin: 0, fontSize: "15px", fontWeight: "600", color: "#f1f0ff" }}>
             {friend.fullName}
           </p>
-          {/* ✅ Text also reflects real status */}
+          
           <p style={{ margin: 0, fontSize: "11px", color: isOnline ? "#22c55e" : "#6b7280" }}>
             {isOnline ? "Online" : "Offline"}
           </p>
