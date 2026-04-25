@@ -24,7 +24,7 @@ passport.use(
 
         user = await User.findOne({ email })
         
-      user = await User.findOne({ email });
+   
       if (user) {
         user.googleId = googleId;
         user.isVerified = true;
@@ -76,3 +76,9 @@ passport.deserializeUser(async (id, done) => {
 })
 
 export default passport
+
+
+
+
+
+
