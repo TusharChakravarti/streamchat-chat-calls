@@ -219,7 +219,7 @@ const ChatPage = () => {
 
              <CallButton handleVideoCall={handleVideoCall} />
             <Window>
-                <CustomChannelHeader
+                <ChannelHeader
               channel={channel}/>
               <MessageList />
               <MessageInput focus />
@@ -234,41 +234,8 @@ const ChatPage = () => {
   );
 };
 
-// ── Custom Channel Header ─────────────────────────────────────
-function CustomChannelHeader({ channel, onVideoCall, onVoiceCall }) {
-  const members = Object.values(channel.state.members || {});
-  const other = members.find(m => m.user?.id !== channel._client?.userID);
-  const user = other?.user;
-  const isOnline = user?.online;
-  const initials = user?.name?.[0]?.toUpperCase() || "?";
 
-  return (
-    <div className="custom-header">
-      <div className="custom-header__avatar">
-        {user?.image ? (
-          <img src={user.image} alt={user.name} />
-        ) : (
-          <span>{initials}</span>
-        )}
-        <div className={`custom-header__status-dot ${isOnline ? "online" : "offline"}`} />
-      </div>
-      <div className="custom-header__info">
-        <div className="custom-header__name">{user?.name || "Unknown"}</div>
-        <div className={`custom-header__status ${isOnline ? "online" : ""}`}>
-          {isOnline ? "● Online" : "● Offline"}
-        </div>
-      </div>
-      <div className="custom-header__actions">
-        <button className="call-btn" onClick={onVideoCall} title="Video Call">
-          <VideoIcon />
-        </button>
-        <button className="call-btn" onClick={onVoiceCall} title="Voice Call">
-          <PhoneIcon />
-        </button>
-      </div>
-    </div>
-  );
-}
+
 
 
 
