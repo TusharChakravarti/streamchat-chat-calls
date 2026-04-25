@@ -20,6 +20,7 @@ query:{ userId:authUser._id },
 
  socket.on("connect", () => {
           console.log("Socket connected:", socket.id);
+              socket.emit("getOnlineUsers");
         });
  
         socket.on("disconnect", () => {
