@@ -18,7 +18,7 @@ const AVATAR_COLORS = [
   "#7c3aed", "#db2777", "#0891b2", "#059669",
   "#d97706", "#e11d48", "#4f46e5", "#be185d",
 ];
-  const { authUser } = useAuthUser();   
+ 
 
 function getAvatarColor(name = "") {
   let hash = 0;
@@ -153,6 +153,7 @@ const HomePage = () => {
   const queryClient = useQueryClient();
   const [outgoingRequestsIds, setOutgoingRequestsIds] = useState(new Set());
   const [search, setSearch] = useState("");
+   const { authUser } = useAuthUser();  
 
 
   const { isUserOnline } = useOnlineUsers();
