@@ -23,7 +23,7 @@ passport.use(
         if (user) return done(null, user)
 
         user = await User.findOne({ email })
-        if (email) {
+        
       user = await User.findOne({ email });
       if (user) {
         user.googleId = googleId;
@@ -31,9 +31,7 @@ passport.use(
         if (!user.profilePic) user.profilePic = profilePic;
         await user.save();
         return done(null, user);
-        
       }
-    }
     
 
 
