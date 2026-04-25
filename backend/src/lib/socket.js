@@ -28,14 +28,9 @@ export const initSocket = (httpServer) =>{
         }
         socket.on("disconnect",()=>{
             if(userId){
-                   console.log(`User disconnecting: ${userId} — waiting 5s before marking offline`);
-                     disconnectTimers[userId] = setTimeout(() => {
                   delete onlineUsers[userId];
-                     delete disconnectTimers[userId];
-                console.log(`User marked offline: ${userId}`);
-                  io.emit("onlineUsers",Object.keys(onlineUsers))
-
-                     },5000)
+                    console.log(`User disconnected: ${userId}`);
+                    io.emit("onlineUsers",Object.keys(onlineUsers))
             }
         })
     })
