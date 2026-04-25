@@ -15,6 +15,7 @@ if((!socket || !socket.connected)){
         {
 query:{ userId:authUser._id },
     withCredentials:true,
+     transports: ["websocket", "polling"],
 });
 
  socket.on("connect", () => {

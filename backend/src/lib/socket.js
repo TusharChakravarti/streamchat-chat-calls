@@ -12,7 +12,8 @@ export const initSocket = (httpServer) =>{
         cors:{
             origin:'https://streamchat-chat-calls.vercel.app',
             credentials:true
-        }
+        },
+            transports: ["websocket", "polling"],
 
     });
     io.on("connection",(socket)=>{
