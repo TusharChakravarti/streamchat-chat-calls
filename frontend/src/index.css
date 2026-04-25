@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .str-chat__channel {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: "#0d0d1a";    
+  background: linear-gradient(to bottom, #c9e8c9, #b7e7bb);
   height: 100%;
 }
 
@@ -34,14 +35,5 @@
 }
 
 .str-chat__edit-message-form-options {
-  gap: 12px;
-}
-
-
-.str-chat__channel-header button {
-  background-color: #7c4dff !important;
-  border-color: #7c4dff !important;
-}
-.str-chat__channel-header button:hover {
-  background-color: #9c6fff !important;
+  gap: 12px; 
 }
