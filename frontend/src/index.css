@@ -41,3 +41,12 @@
 
 
 
+.str-chat {
+  --str-chat__background-color: #0d0d1a !important;
+}
+
+.str-chat__container,
+.str-chat-channel,
+.str-chat__main-panel {
+  background: #0d0d1a !important;
+}
