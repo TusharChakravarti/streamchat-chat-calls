@@ -137,10 +137,10 @@ import { StreamChat } from "stream-chat";
 import toast from "react-hot-toast";
 
 import ChatLoader from "../components/ChatLoader";
-import VideoCallModal from "../components/VideoCallModal";
+
 
 import "stream-chat-react/dist/css/v2/index.css";
-import "./ChatPage.css"; // custom overrides — see below
+import "./ChatPage.css";
 
 const STREAM_API_KEY = import.meta.env.VITE_STREAM_API_KEY;
 
