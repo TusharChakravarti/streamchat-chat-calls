@@ -18,6 +18,7 @@ const AVATAR_COLORS = [
   "#7c3aed", "#db2777", "#0891b2", "#059669",
   "#d97706", "#e11d48", "#4f46e5", "#be185d",
 ];
+  const { authUser } = useAuthUser();   
 
 function getAvatarColor(name = "") {
   let hash = 0;
@@ -29,7 +30,7 @@ const SuggestedUserCard = ({ user, hasRequestBeenSent, isPending, onSendRequest 
   const [hovered, setHovered] = useState(false);
   const color = getAvatarColor(user.fullName);
   const initials = user.fullName?.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
-    const { authUser } = useAuthUser();
+ 
 
   return (
     <div
