@@ -117,10 +117,7 @@
 // export default ChatPage;
 
 
-// ============================================================
-// ChatPage.jsx  — drop-in replacement for your existing file
-// Works with: stream-chat-react, @tanstack/react-query
-// ============================================================
+
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
@@ -218,14 +215,7 @@ const ChatPage = () => {
         </Channel>
       </Chat>
 
-      {/* Video call modal */}
-      {showCall && (
-        <VideoCallModal
-          channel={channel}
-          authUser={authUser}
-          onClose={() => setShowCall(false)}
-        />
-      )}
+   
     </div>
   );
 };
@@ -281,111 +271,3 @@ const PhoneIcon = () => (
 export default ChatPage;
 
 
-// ============================================================
-// VideoCallModal.jsx  — src/components/VideoCallModal.jsx
-// ============================================================
-export function VideoCallModal({ channel, authUser, onClose }) {
-  const [seconds, setSeconds] = useState(0);
-  const [micOn, setMicOn] = useState(true);
-  const [camOn, setCamOn] = useState(true);
-
-  useEffect(() => {
-    const t = setInterval(() => setSeconds(s => s + 1), 1000);
-    return () => clearInterval(t);
-  }, []);
-
-  const fmt = s =>
-    `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
-
-  const members = Object.values(channel?.state?.members || {});
-  const other = members.find(m => m.user?.id !== authUser?._id);
-  const otherUser = other?.user;
-  const initials = otherUser?.name?.[0]?.toUpperCase() || "?";
-
-  return (
-    <div className="call-overlay">
-      <div className="call-modal">
-        {/* Video area */}
-        <div className="call-video-area">
-          <div className="call-avatar-ring">
-            {otherUser?.image ? (
-              <img src={otherUser.image} alt="" className="call-avatar-img" />
-            ) : (
-              <div className="call-avatar-letter">{initials}</div>
-            )}
-          </div>
-          <div className="call-self-view">
-            {authUser?.profilePic ? (
-              <img src={authUser.profilePic} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-            ) : (
-              <div className="call-self-initials">{authUser?.fullName?.[0] || "Y"}</div>
-            )}
-          </div>
-          <div className="call-timer">{fmt(seconds)}</div>
-          <div className="call-name-label">
-            <span className="call-online-dot" />
-            {otherUser?.name || "User"}
-          </div>
-        </div>
-
-        {/* Info */}
-        <div className="call-modal-info">
-          <div className="call-modal-title">Video Call with {otherUser?.name || "User"}</div>
-          <div className="call-modal-sub">Connected · {fmt(seconds)}</div>
-        </div>
-
-        {/* Controls */}
-        <div className="call-controls">
-          <button
-            className={`ctrl-btn ${micOn ? "active" : "inactive"}`}
-            onClick={() => setMicOn(m => !m)}
-            title={micOn ? "Mute" : "Unmute"}
-          >
-            {micOn ? <MicIcon /> : <MicOffIcon />}
-          </button>
-          <button
-            className={`ctrl-btn ${camOn ? "active" : "inactive"}`}
-            onClick={() => setCamOn(c => !c)}
-            title={camOn ? "Stop Camera" : "Start Camera"}
-          >
-            <VideoIcon />
-          </button>
-          <button className="ctrl-btn" title="Share Screen">
-            <ScreenIcon />
-          </button>
-          <button className="ctrl-btn" title="More">
-            <MoreIcon />
-          </button>
-          <button className="ctrl-btn end" onClick={onClose} title="End Call">
-            <PhoneOffIcon />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-const MicIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3z" />
-    <path d="M19 10v2a7 7 0 01-14 0v-2M12 19v3M8 22h8" />
-  </svg>
-);
-const MicOffIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="1" y1="1" x2="23" y2="23" />
-    <path d="M9 9v3a3 3 0 005.12 2.12M15 9.34V4a3 3 0 00-5.94-.6M17 16.95A7 7 0 015 12v-2m14 0v2a7 7 0 01-.11 1.23M12 19v3M8 22h8" />
-  </svg>
-);
-const ScreenIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="3" width="20" height="14" rx="2" />
-    <line x1="8" y1="21" x2="16" y2="21" />
-    <line x1="12" y1="17" x2="12" y2="21" />
-  </svg>
-);
-const MoreIcon = () => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-    <circle cx="12" cy="12" r="1" /><circle cx="19" cy="12" r="1" /><circle cx="5" cy="12" r="1" />
-  </svg>
-);
