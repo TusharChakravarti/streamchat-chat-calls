@@ -199,46 +199,52 @@ const OnboardingPage = () => {
             />
           </div>
 
-          {/* Languages */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "14px" }}>
-            <div>
-              <label className="ob-label">Native Language</label>
-              <div style={{ position: "relative" }}>
-                <select className="ob-select"
-                  value={formState.nativeLanguage}
-                  onChange={(e) => setFormState({ ...formState, nativeLanguage: e.target.value })}
-                >
-                  <option value="">Select native language</option>
-                  {LANGUAGES.map((lang) => (
-                    <option key={`native-${lang}`} value={lang.toLowerCase()}>{lang}</option>
-                  ))}
-                </select>
-                <svg style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
-                  width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </div>
-            </div>
 
-            <div>
-              <label className="ob-label">Learning Language</label>
-              <div style={{ position: "relative" }}>
-                <select className="ob-select"
-                  value={formState.learningLanguage}
-                  onChange={(e) => setFormState({ ...formState, learningLanguage: e.target.value })}
-                >
-                  <option value="">Select learning language</option>
-                  {LANGUAGES.map((lang) => (
-                    <option key={`learning-${lang}`} value={lang.toLowerCase()}>{lang}</option>
-                  ))}
-                </select>
-                <svg style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
-                  width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2">
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </div>
-            </div>
-          </div>
+{/* Languages */}
+<div style={{
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", // ← stacks on mobile, side by side on desktop
+  gap: "14px"
+}}>
+  <div>
+    <label className="ob-label">Native Language</label>
+    <div style={{ position: "relative" }}>
+      <select className="ob-select"
+        value={formState.nativeLanguage}
+        onChange={(e) => setFormState({ ...formState, nativeLanguage: e.target.value })}
+      >
+        <option value="">Select native language</option>
+        {LANGUAGES.map((lang) => (
+          <option key={`native-${lang}`} value={lang.toLowerCase()}>{lang}</option>
+        ))}
+      </select>
+      <svg style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
+        width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2">
+        <polyline points="6 9 12 15 18 9" />
+      </svg>
+    </div>
+  </div>
+
+  <div>
+    <label className="ob-label">Learning Language</label>
+    <div style={{ position: "relative" }}>
+      <select className="ob-select"
+        value={formState.learningLanguage}
+        onChange={(e) => setFormState({ ...formState, learningLanguage: e.target.value })}
+      >
+        <option value="">Select learning language</option>
+        {LANGUAGES.map((lang) => (
+          <option key={`learning-${lang}`} value={lang.toLowerCase()}>{lang}</option>
+        ))}
+      </select>
+      <svg style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
+        width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2">
+        <polyline points="6 9 12 15 18 9" />
+      </svg>
+    </div>
+  </div>
+</div>
+      
 
           {/* Location */}
           <div>
