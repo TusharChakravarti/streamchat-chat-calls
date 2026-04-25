@@ -52,28 +52,6 @@
 }
 
 
-.str-chat__avatar {
+img.str-chat__avatar-image {
   background: transparent !important;
-}
-
-.str-chat__avatar img {
-  border: none !important;
-  box-shadow: none !important;
-}
-
-
-.str-chat__channel-header {
-  background: #0d0d1a !important;
-  border-bottom: 1px solid rgba(255,255,255,0.07) !important;
-  color: #f1f0ff !important;
-}
-
-
-.str-chat__channel-header-info p,
-.str-chat__channel-header-info span {
-  color: rgba(255,255,255,0.5) !important;
-}
-
-.str-chat__channel-header-title {
-  color: #f1f0ff !important;
 }
