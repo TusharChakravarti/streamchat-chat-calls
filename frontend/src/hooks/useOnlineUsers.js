@@ -10,7 +10,7 @@ const useOnlineUsers = ()=>{
     useEffect(()=>{
 if(!authUser) return;
 
-if(!socket){
+if((!socket || !socket.connected)){
     socket = io('https://streamchat-chat-calls.onrender.com'||"http://localhost:5001",
         {
 query:{ userId:authUser._id },
