@@ -2,7 +2,7 @@ import {Server} from "socket.io";
 
 
 const onlineUsers = {};
-const disconnectTimers = {};
+
 
 export const getOnlineUsers = ()=> Object.keys(onlineUsers);
 export const getRecieverSocketId = (userId) => onlineUsers[userId]
@@ -18,10 +18,7 @@ export const initSocket = (httpServer) =>{
     io.on("connection",(socket)=>{
         const userId = socket.handshake.query.userId;
         if(userId){
-              if (disconnectTimers[userId]) {
-        clearTimeout(disconnectTimers[userId]);
-        delete disconnectTimers[userId];
-      }
+           
             onlineUsers[userId] = socket.id;
             console.log(`User connected: ${userId}`);
             io.emit("onlineUsers",Object.keys(onlineUsers))
