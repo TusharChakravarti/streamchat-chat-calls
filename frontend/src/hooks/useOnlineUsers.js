@@ -26,14 +26,20 @@ query:{ userId:authUser._id },
         socket.on("disconnect", () => {
           console.log("Socket disconnected");
         });
+
+        socket.on("onlineUsers",(users) =>{
+            setOnlineUsers(users);
+});
    
 }
-socket.on("onlineUsers",(users) =>{
-    setOnlineUsers(users);
-});
+
 
 return () =>{
-      if (socket) socket.off("onlineUsers");
+      if (socket){
+    socket.off("onlineUsers");
+      socket.off("connect");     
+      socket.off("disconnect");
+      } 
 }
 
  

@@ -30,6 +30,12 @@ export const initSocket = (httpServer) =>{
             socket.emit("onlineUsers", Object.keys(onlineUsers));
             io.emit("onlineUsers",Object.keys(onlineUsers))
         }
+
+
+socket.on("getOnlineUsers", () => {
+  socket.emit("onlineUsers", Object.keys(onlineUsers));
+});
+
         socket.on("disconnect",()=>{
             if(userId){
 
