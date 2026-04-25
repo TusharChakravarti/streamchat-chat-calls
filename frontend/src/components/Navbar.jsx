@@ -25,7 +25,6 @@ const Navbar = () => {
           -webkit-text-fill-color: transparent;
           letter-spacing: -0.3px;
         }
-
         /* Hide logo text on very small screens to prevent squeezing */
         @media (max-width: 360px) {
           .nav-logo-text { display: none; }
