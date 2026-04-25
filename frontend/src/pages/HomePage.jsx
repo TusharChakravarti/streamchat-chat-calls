@@ -297,14 +297,38 @@ const HomePage = () => {
       <h2 style={{ margin: "0 0 6px", fontSize: "16px", fontWeight: "600", color: "#f1f0ff", fontFamily: "'Syne', sans-serif" }}>
         👋 Hey {authUser?.fullName?.split(" ")[0]}!
       </h2>
-      <p style={{ margin: "0 0 4px", fontSize: "13px", color: "rgba(255,255,255,0.6)" }}>
-        {onlineFriends.length === 1
-          ? <><span style={{ color: "#a78bfa", fontWeight: "600" }}>{onlineFriends[0].fullName}</span> is online right now 🟢</>
-          : onlineFriends.length === 2
-          ? <><span style={{ color: "#a78bfa", fontWeight: "600" }}>{onlineFriends[0].fullName}</span> and <span style={{ color: "#a78bfa", fontWeight: "600" }}>{onlineFriends[1].fullName}</span> are online 🟢</>
-          : <><span style={{ color: "#a78bfa", fontWeight: "600" }}>{onlineFriends[0].fullName}</span>, <span style={{ color: "#a78bfa", fontWeight: "600" }}>{onlineFriends[1].fullName}</span> and <span style={{ color: "#a78bfa", fontWeight: "600" }}>{onlineFriends.length - 2} more</span> are online 🟢</>
-        }
-      </p>
+    <p style={{ margin: "0 0 4px", fontSize: "13px", color: "rgba(255,255,255,0.6)" }}>
+  {(() => {
+    const names = onlineFriends.map(f => (
+      <span key={f._id} style={{ color: "#a78bfa", fontWeight: "600" }}>
+        {f.fullName}
+      </span>
+    ));
+
+    if (names.length === 1) {
+      return <>{names[0]} is online right now 🟢</>;
+    }
+
+    if (names.length === 2) {
+      return <>{names[0]} and {names[1]} are online 🟢</>;
+    }
+
+    if (names.length === 3) {
+      return <>{names[0]}, {names[1]} and {names[2]} are online 🟢</>;
+    }
+
+   
+    return (
+      <>
+        {names[0]}, {names[1]} and{" "}
+        <span style={{ color: "#a78bfa", fontWeight: "600" }}>
+          {onlineFriends.length - 2} more
+        </span>{" "}
+        are online 🟢
+      </>
+    );
+  })()}
+</p>
       <p style={{ margin: 0, fontSize: "12px", color: "rgba(255,255,255,0.3)" }}>
         Start a conversation or jump on a video call!
       </p>
