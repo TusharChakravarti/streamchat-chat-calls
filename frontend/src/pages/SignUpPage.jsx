@@ -217,7 +217,7 @@ const SignUpPage = () => {
               )}
 
               {/* Google OAuth */}
-              <a href="/auth/google" className="sc-btn-google" style={{ marginBottom: "20px" }}>
+              <a href="https://streamchat-chat-calls.onrender.com/api/auth/google" className="sc-btn-google" style={{ marginBottom: "20px" }}>
                 <GoogleIcon />
                 Continue with Google
               </a>
