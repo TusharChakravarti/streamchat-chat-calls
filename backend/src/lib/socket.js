@@ -27,6 +27,7 @@ export const initSocket = (httpServer) =>{
             }
             onlineUsers[userId] = socket.id;
             console.log(`User connected: ${userId}`);
+            socket.emit("onlineUsers", Object.keys(onlineUsers));
             io.emit("onlineUsers",Object.keys(onlineUsers))
         }
         socket.on("disconnect",()=>{
