@@ -223,7 +223,7 @@ const HomePage = () => {
             </h1>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+          <div style={{ display: "flex",flexWrap: "wrap",alignItems: "center", gap: "12px" }}>
             {/* Search */}
             <div style={{ position: "relative" }}>
               <svg style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)" }}
@@ -246,23 +246,32 @@ const HomePage = () => {
             </div>
 
             {/* Friend Requests */}
-            <Link
-              to="/notifications"
-              style={{
-                display: "flex", alignItems: "center", gap: "8px",
-                background: "rgba(124,58,237,0.15)",
-                border: "1px solid rgba(124,58,237,0.35)",
-                borderRadius: "10px", padding: "9px 16px",
-                color: "#a78bfa", fontSize: "13px", fontWeight: "600",
-                textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
-                transition: "all 0.2s",
-              }}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-              </svg>
-              Friend Requests
-            </Link>
+          <Link
+            to="/notifications"
+            style={{
+              flexShrink: 0,           // ← never shrinks below its content width
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              background: "rgba(124,58,237,0.15)",
+              border: "1px solid rgba(124,58,237,0.35)",
+              borderRadius: "10px",
+              padding: "9px 16px",
+              color: "#a78bfa",
+              fontSize: "13px",
+              fontWeight: "600",
+              textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif",
+              transition: "all 0.2s",
+              whiteSpace: "nowrap",    // ← keeps text on one line
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path strokeLinecap="round" strokeLinejoin="round"
+                d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+            </svg>
+            Friend Requests
+          </Link>
           </div>
         </div>
 
@@ -399,67 +408,4 @@ export default HomePage;
 
 
 
-        // <div style={{
-        //   display: "flex",
-        //   flexWrap: "wrap",  
-        //   gap: "10px",
-        //   alignItems: "center",
-        // }}>
-
-        //   {/* Search */}
-        //   <div style={{ position: "relative", flex: "1 1 140px", minWidth: "140px" }}>
-        //     <svg
-        //       style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
-        //       width="14" height="14" viewBox="0 0 24 24" fill="none"
-        //       stroke="rgba(255,255,255,0.3)" strokeWidth="2"
-        //     >
-        //       <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
-        //     </svg>
-        //     <input
-        //       value={search}
-        //       onChange={e => setSearch(e.target.value)}
-        //       placeholder="Search friends..."
-        //       style={{
-        //         width: "100%",           // ← fills available space instead of fixed 200px
-        //         background: "rgba(255,255,255,0.06)",
-        //         border: "1px solid rgba(255,255,255,0.1)",
-        //         borderRadius: "10px",
-        //         padding: "9px 14px 9px 34px",
-        //         color: "#f1f0ff",
-        //         fontSize: "13px",
-        //         outline: "none",
-        //         fontFamily: "'DM Sans', sans-serif",
-        //         boxSizing: "border-box",
-        //       }}
-        //     />
-        //   </div>
-
-        //   {/* Friend Requests */}
-        //   <Link
-        //     to="/notifications"
-        //     style={{
-        //       flexShrink: 0,           // ← never shrinks below its content width
-        //       display: "flex",
-        //       alignItems: "center",
-        //       gap: "8px",
-        //       background: "rgba(124,58,237,0.15)",
-        //       border: "1px solid rgba(124,58,237,0.35)",
-        //       borderRadius: "10px",
-        //       padding: "9px 16px",
-        //       color: "#a78bfa",
-        //       fontSize: "13px",
-        //       fontWeight: "600",
-        //       textDecoration: "none",
-        //       fontFamily: "'DM Sans', sans-serif",
-        //       transition: "all 0.2s",
-        //       whiteSpace: "nowrap",    // ← keeps text on one line
-        //     }}
-        //   >
-        //     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-        //       <path strokeLinecap="round" strokeLinejoin="round"
-        //         d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-        //     </svg>
-        //     Friend Requests
-        //   </Link>
-
-        // </div>
+    
