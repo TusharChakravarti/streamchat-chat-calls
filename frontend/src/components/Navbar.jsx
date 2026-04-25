@@ -1,7 +1,6 @@
-import { Link, useLocation } from "react-router";
+import { Link } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
 import { BellIcon, LogOutIcon } from "lucide-react";
-
 import useLogout from "../hooks/useLogout";
 import { useState } from "react";
 
@@ -16,112 +15,137 @@ const Navbar = () => {
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Syne:wght@700;800&display=swap');
+
+        .nav-logo-text {
+          font-size: 18px;
+          font-weight: 800;
+          font-family: 'Syne', sans-serif;
+          background: linear-gradient(135deg, #a78bfa, #7c3aed);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          letter-spacing: -0.3px;
+        }
+
+        /* Hide logo text on very small screens to prevent squeezing */
+        @media (max-width: 360px) {
+          .nav-logo-text { display: none; }
+        }
+
+        .nav-icon-btn {
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.2s;
+          flex-shrink: 0;
+        }
       `}</style>
 
       <nav style={{
         background: "rgba(10,10,20,0.95)",
         borderBottom: "1px solid rgba(255,255,255,0.07)",
         position: "sticky", top: 0, zIndex: 30,
-        height: "64px",
+        height: "60px",
         display: "flex", alignItems: "center",
         backdropFilter: "blur(12px)",
         fontFamily: "'DM Sans', sans-serif",
         width: "100%",
       }}>
         <div style={{
-          width: "100%", padding: "0 20px",
-          display: "flex", alignItems: "center", justifyContent: "space-between",
+          width: "100%",
+          padding: "0 16px",          
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "8px",                 
         }}>
 
-          {/* Logo + Name — always visible in navbar */}
-          <Link to="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "10px" }}>
+          {/* Logo */}
+          <Link to="/" style={{
+            textDecoration: "none",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+            flexShrink: 0,            
+            minWidth: 0,              
+          }}>
             <div style={{
               width: "34px", height: "34px", borderRadius: "10px",
               background: "linear-gradient(135deg, #7c3aed, #a855f7)",
               display: "flex", alignItems: "center", justifyContent: "center",
               flexShrink: 0,
             }}>
-                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#7c3aed"/>
-      <stop offset="100%" stop-color="#a855f7"/>
-    </linearGradient>
-  </defs>
-
- 
-  <rect width="32" height="32" rx="8" fill="url(#bg)"/>
-
-  
-  <rect x="5" y="7" width="14" height="10" rx="3.5" fill="white" fill-opacity="0.45"/>
-  <polygon points="7,17 5,22 12,17" fill="white" fill-opacity="0.45"/>
-
-  
-  <rect x="13" y="15" width="14" height="10" rx="3.5" fill="white"/>
-  <polygon points="25,25 27,30 20,25" fill="white"/>
-</svg>
+              <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="5" y="7" width="14" height="10" rx="3.5" fill="white" fillOpacity="0.45" />
+                <polygon points="7,17 5,22 12,17" fill="white" fillOpacity="0.45" />
+                <rect x="13" y="15" width="14" height="10" rx="3.5" fill="white" />
+                <polygon points="25,25 27,30 20,25" fill="white" />
+              </svg>
             </div>
-            <span style={{
-              fontSize: "18px", fontWeight: "800",
-              fontFamily: "'Syne', sans-serif",
-              background: "linear-gradient(135deg, #a78bfa, #7c3aed)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              letterSpacing: "-0.3px",
-            }}>
-              StreamChat
-            </span>
+
+            {/* Hidden on very small screens */}
+            <span className="nav-logo-text">StreamChat</span>
           </Link>
 
           {/* Right Actions */}
-          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-     
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",              
+            flexShrink: 0,
+          }}>
 
+            {/* Bell */}
             <Link to="/notifications" style={{ textDecoration: "none" }}>
               <button
+                className="nav-icon-btn"
                 onMouseEnter={() => setBellHovered(true)}
                 onMouseLeave={() => setBellHovered(false)}
                 style={{
-                  width: "38px", height: "38px", borderRadius: "10px",
                   background: bellHovered ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(255,255,255,0.08)",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  cursor: "pointer", transition: "all 0.2s",
                 }}
               >
-                <BellIcon size={17} color="rgba(255,255,255,0.55)" />
+                <BellIcon size={16} color="rgba(255,255,255,0.55)" />
               </button>
             </Link>
 
+            {/* Avatar */}
             <div
               onMouseEnter={() => setAvatarHovered(true)}
               onMouseLeave={() => setAvatarHovered(false)}
               style={{
-                width: "38px", height: "38px", borderRadius: "50%",
-                overflow: "hidden",
+                width: "36px", height: "36px", borderRadius: "50%",
+                overflow: "hidden", flexShrink: 0,
                 border: avatarHovered ? "2px solid #7c3aed" : "2px solid rgba(255,255,255,0.1)",
-                transition: "border 0.2s", cursor: "pointer", flexShrink: 0,
+                transition: "border 0.2s", cursor: "pointer",
               }}
             >
-              <img src={authUser?.profilePic} alt="User Avatar"
-                style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              <img
+                src={authUser?.profilePic}
+                alt="User Avatar"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
             </div>
 
+            {/* Logout */}
             <button
-              onClick={logoutMutation}
+              onClick={() => logoutMutation()}
+              className="nav-icon-btn"
               onMouseEnter={() => setLogoutHovered(true)}
               onMouseLeave={() => setLogoutHovered(false)}
               title="Logout"
               style={{
-                width: "38px", height: "38px", borderRadius: "10px",
                 background: logoutHovered ? "rgba(239,68,68,0.12)" : "rgba(255,255,255,0.04)",
                 border: logoutHovered ? "1px solid rgba(239,68,68,0.3)" : "1px solid rgba(255,255,255,0.08)",
-                display: "flex", alignItems: "center", justifyContent: "center",
-                cursor: "pointer", transition: "all 0.2s",
               }}
             >
-              <LogOutIcon size={17} color={logoutHovered ? "#f87171" : "rgba(255,255,255,0.45)"} />
+              <LogOutIcon size={16} color={logoutHovered ? "#f87171" : "rgba(255,255,255,0.45)"} />
             </button>
+
           </div>
         </div>
       </nav>
