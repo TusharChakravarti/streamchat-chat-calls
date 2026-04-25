@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router";
 import { LANGUAGE_TO_FLAG } from "../constants";
-import useOnlineUsers from "../hooks/useOnlineUsers";
+
 
 const AVATAR_COLORS = [
   "#7c3aed", "#db2777", "#0891b2", "#059669",
@@ -31,12 +31,11 @@ export function getLanguageFlag(language) {
 }
 
 // ─── Friend Card (used on Friends page) ──────────────────────────────────────
-export const FriendCard = ({ friend }) => {
+export const FriendCard = ({ friend, isOnline }) => {
   const [hovered, setHovered] = useState(false);
   const color = getAvatarColor(friend.fullName);
   const initials = friend.fullName?.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
-  const { isUserOnline } = useOnlineUsers();
-  const isOnline = isUserOnline(friend._id);
+
 
   return (
     <div

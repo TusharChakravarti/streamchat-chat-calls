@@ -354,7 +354,7 @@ const HomePage = () => {
             marginBottom: "40px",
           }}>
             {filteredFriends.map(friend => (
-              <FriendCard key={friend._id} friend={friend} />
+              <FriendCard key={friend._id} friend={friend}  isOnline={isUserOnline(friend._id)}  />
             ))}
           </div>
         )}
