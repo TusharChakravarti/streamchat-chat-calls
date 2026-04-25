@@ -73,3 +73,7 @@
 .str-chat__channel-header-info .str-chat__avatar-image {
   background: transparent !important;
 }
+
+.str-chat__channel-header * {
+  --str-chat__avatar-background-color: transparent !important;
+}
