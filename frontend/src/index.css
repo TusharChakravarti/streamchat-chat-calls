@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #13111a;     /* ← changed from green gradient */
+  background: #13111a;    
   height: 100%;
 }
 
@@ -37,7 +37,7 @@
   gap: 12px;
 }
 
-/* ← new: fix green video call button → purple */
+
 .str-chat__channel-header button {
   background-color: #7c4dff !important;
   border-color: #7c4dff !important;
