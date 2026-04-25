@@ -7,7 +7,9 @@ fullName:{
 },
 email:{
     type:String,
-    required:true,
+     required: function () {
+    return !this.googleId; 
+  },
     unique:true
 }
 ,password:{
