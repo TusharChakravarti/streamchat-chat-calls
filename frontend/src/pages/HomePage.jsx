@@ -12,6 +12,7 @@ import { capitialize } from "../lib/utils";
 import FriendCard, { getLanguageFlag } from "../components/FriendCard";
 import NoFriendsFound from "../components/NoFriendsFound";
 import useOnlineUsers from "../hooks/useOnlineUsers";
+import useAuthUser from "../hooks/useAuthUser";
 
 const AVATAR_COLORS = [
   "#7c3aed", "#db2777", "#0891b2", "#059669",
@@ -291,7 +292,7 @@ const HomePage = () => {
   }}>
     <div>
       <h2 style={{ margin: "0 0 6px", fontSize: "16px", fontWeight: "600", color: "#f1f0ff", fontFamily: "'Syne', sans-serif" }}>
-        👋 Hey {user?.fullName?.split(" ")[0]}!
+        👋 Hey {user?.authUser?.split(" ")[0]}!
       </h2>
       <p style={{ margin: "0 0 4px", fontSize: "13px", color: "rgba(255,255,255,0.6)" }}>
         {onlineFriends.length === 1
