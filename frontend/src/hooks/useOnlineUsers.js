@@ -16,6 +16,14 @@ if((!socket || !socket.connected)){
 query:{ userId:authUser._id },
     withCredentials:true,
 });
+
+ socket.on("connect", () => {
+          console.log("Socket connected:", socket.id);
+        });
+ 
+        socket.on("disconnect", () => {
+          console.log("Socket disconnected");
+        });
    
 }
 socket.on("onlineUsers",(users) =>{
@@ -23,7 +31,7 @@ socket.on("onlineUsers",(users) =>{
 });
 
 return () =>{
-    socket.off("onlineUsers")
+      if (socket) socket.off("onlineUsers");
 }
 
  
