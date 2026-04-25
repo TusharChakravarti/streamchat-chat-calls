@@ -38,7 +38,7 @@ export const initSocket = (httpServer) =>{
              delete disconnectTimers[userId];
               console.log(`User marked offline: ${userId}`);
                     io.emit("onlineUsers",Object.keys(onlineUsers))
-              },5000)
+              },10000)
 
 
 
