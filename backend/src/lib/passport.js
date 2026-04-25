@@ -23,13 +23,18 @@ passport.use(
         if (user) return done(null, user)
 
         user = await User.findOne({ email })
-        if (user) {
-          user.googleId = googleId
-          user.isVerified = true 
-          if (!user.profilePic) user.profilePic = profilePic
-          await user.save()
-          return done(null, user)
-        }
+        if (email) {
+      user = await User.findOne({ email });
+      if (user) {
+        user.googleId = googleId;
+        user.isVerified = true;
+        if (!user.profilePic) user.profilePic = profilePic;
+        await user.save();
+        return done(null, user);
+        
+      }
+    }
+    
 
 
         const idx = Math.floor(Math.random() * 100) + 1
