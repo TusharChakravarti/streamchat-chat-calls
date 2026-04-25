@@ -213,80 +213,76 @@ const HomePage = () => {
 
       <div className="home-pad" style={{ padding: "28px 32px", maxWidth: "1400px", margin: "0 auto" }}>
 
-     {/* Top Bar */}
-<div style={{
-  display: "flex",
-  flexDirection: "column",   // ← stack title and search vertically
-  gap: "16px",
-  marginBottom: "28px",
-}}>
-  {/* Title row */}
-  <div>
-    <p style={{ margin: 0, fontSize: "11px", color: "rgba(255,255,255,0.3)", letterSpacing: "2px", textTransform: "uppercase", marginBottom: "4px" }}>
-      Dashboard
-    </p>
-    <h1 className="home-title" style={{
-      margin: 0, fontSize: "26px", fontWeight: "800",
-      color: "#f1f0ff", fontFamily: "'Syne', sans-serif", letterSpacing: "-0.5px",
-    }}>
-      Your Friends
-      <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", fontWeight: "400", marginLeft: "10px", fontFamily: "'DM Sans', sans-serif" }}>
-        ({friends.length})
-      </span>
-    </h1>
-  </div>
+        {/* Top Bar */}
+        <div style={{
+          display: "flex", alignItems: "center",
+          justifyContent: "space-between", marginBottom: "28px",
+          flexWrap: "wrap", gap: "16px",
+        }}>
+          <div>
+            <p style={{ margin: 0, fontSize: "11px", color: "rgba(255,255,255,0.3)", letterSpacing: "2px", textTransform: "uppercase", marginBottom: "4px" }}>
+              Dashboard
+            </p>
+            <h1 className="home-title" style={{
+              margin: 0, fontSize: "26px", fontWeight: "800",
+              color: "#f1f0ff", fontFamily: "'Syne', sans-serif", letterSpacing: "-0.5px",
+            }}>
+              Your Friends
+              <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.25)", fontWeight: "400", marginLeft: "10px", fontFamily: "'DM Sans', sans-serif" }}>
+                ({friends.length})
+              </span>
+            </h1>
+          </div>
 
-  {/* Search + Friend Requests — full width row */}
-  <div style={{
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-    width: "100%",           // ← takes full width
-  }}>
-    <div style={{ position: "relative", flex: 1, minWidth: 0 }}>
-      <svg style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
-        width="14" height="14" viewBox="0 0 24 24" fill="none"
-        stroke="rgba(255,255,255,0.3)" strokeWidth="2">
-        <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
-      </svg>
-      <input
-        value={search}
-        onChange={e => setSearch(e.target.value)}
-        placeholder="Search friends..."
-        style={{
-          width: "100%",
-          boxSizing: "border-box",
-          background: "rgba(255,255,255,0.06)",
-          border: "1px solid rgba(255,255,255,0.1)",
-          borderRadius: "10px", padding: "9px 14px 9px 34px",
-          color: "#f1f0ff", fontSize: "13px", outline: "none",
-          fontFamily: "'DM Sans', sans-serif",
-        }}
-      />
-    </div>
+         
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", flex: "1 1 auto", justifyContent: "flex-end", minWidth: 0 }}>
 
-    <Link
-      to="/notifications"
-      className="fr-btn"
-      style={{
-        flexShrink: 0,
-        display: "flex", alignItems: "center", gap: "7px",
-        background: "rgba(124,58,237,0.15)",
-        border: "1px solid rgba(124,58,237,0.35)",
-        borderRadius: "10px", padding: "9px 16px",
-        color: "#a78bfa", fontSize: "13px", fontWeight: "600",
-        textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
-        transition: "all 0.2s", whiteSpace: "nowrap",
-      }}
-    >
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ flexShrink: 0 }}>
-        <path strokeLinecap="round" strokeLinejoin="round"
-          d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-      </svg>
-      <span className="fr-btn-text">Friend Requests</span>
-    </Link>
-  </div>
-</div>
+            {/* Search — flex grows, never overflows */}
+            <div style={{ position: "relative", flex: "1 1 120px", maxWidth: "260px", minWidth: 0 }}>
+              <svg style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", pointerEvents: "none" }}
+                width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="rgba(255,255,255,0.3)" strokeWidth="2">
+                <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
+              </svg>
+              <input
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+                placeholder="Search friends..."
+                style={{
+                  width: "100%",                  
+                  boxSizing: "border-box",
+                  background: "rgba(255,255,255,0.06)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  borderRadius: "10px", padding: "9px 14px 9px 34px",
+                  color: "#f1f0ff", fontSize: "13px", outline: "none",
+                  fontFamily: "'DM Sans', sans-serif",
+                }}
+              />
+            </div>
+
+            {/* Friend Requests Button */}
+            <Link
+              to="/notifications"
+              className="fr-btn"
+              style={{
+                flexShrink: 0,
+                display: "flex", alignItems: "center", gap: "7px",
+                background: "rgba(124,58,237,0.15)",
+                border: "1px solid rgba(124,58,237,0.35)",
+                borderRadius: "10px", padding: "9px 16px",
+                color: "#a78bfa", fontSize: "13px", fontWeight: "600",
+                textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
+                transition: "all 0.2s", whiteSpace: "nowrap",
+              }}
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ flexShrink: 0 }}>
+                <path strokeLinecap="round" strokeLinejoin="round"
+                  d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+              </svg>
+              <span className="fr-btn-text">Friend Requests</span>
+            </Link>
+          </div>
+        </div>
 
      {/* Online Friends Banner */}
 {onlineFriends.length > 0 && (
