@@ -37,3 +37,17 @@
 .str-chat__edit-message-form-options {
   gap: 12px; 
 }
+
+
+/* In your index.css */
+.str-chat {
+  --str-chat__background-color: #0d0d1a !important;
+}
+
+.str-chat__container {
+  background: #0d0d1a !important;
+}
+
+.str-chat-channel {
+  background: #0d0d1a !important;
+}
