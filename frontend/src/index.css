@@ -55,3 +55,7 @@
 img.str-chat__avatar-image {
   background: transparent !important;
 }
+
+img.str-chat__avatar-image {
+  background: #1a1a2e !important;
+}
