@@ -7,14 +7,14 @@ fullName:{
 },
 email:{
     type:String,
-     required: function () {
-    return !this.googleId; 
-  },
+    required:true,
     unique:true
 }
 ,password:{
     type:String,
-    required:true,
+      required: function () {
+      return !this.googleId;
+    },
     minlength:6
 
 },
