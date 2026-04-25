@@ -292,7 +292,7 @@ const HomePage = () => {
   }}>
     <div>
       <h2 style={{ margin: "0 0 6px", fontSize: "16px", fontWeight: "600", color: "#f1f0ff", fontFamily: "'Syne', sans-serif" }}>
-        👋 Hey {user?.authUser?.split(" ")[0]}!
+        👋 Hey {authUser?.fullName?.split(" ")[0]}!
       </h2>
       <p style={{ margin: "0 0 4px", fontSize: "13px", color: "rgba(255,255,255,0.6)" }}>
         {onlineFriends.length === 1
