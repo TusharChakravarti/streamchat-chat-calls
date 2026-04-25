@@ -45,7 +45,7 @@ const SuggestedUserCard = ({ user, hasRequestBeenSent, isPending, onSendRequest 
         flexDirection: "column",
         gap: "14px",
         fontFamily: "'DM Sans', sans-serif",
-        height: "100%",           // ← fills grid cell
+        height: "100%",         
         boxSizing: "border-box",
       }}
     >
@@ -106,10 +106,9 @@ const SuggestedUserCard = ({ user, hasRequestBeenSent, isPending, onSendRequest 
         </span>
       </div>
 
-      {/* Bio — clamped to 2 lines so all cards stay same height */}
       <p style={{
         margin: 0, fontSize: "12px", color: "rgba(255,255,255,0.4)", lineHeight: "1.5",
-        minHeight: "36px",                      // ← reserves space even if no bio
+        minHeight: "36px",                    
         display: "-webkit-box",
         WebkitLineClamp: 2,
         WebkitBoxOrient: "vertical",
@@ -118,7 +117,6 @@ const SuggestedUserCard = ({ user, hasRequestBeenSent, isPending, onSendRequest 
         {user.bio || ""}
       </p>
 
-      {/* Add Friend Button — always pinned to bottom */}
       <div style={{ marginTop: "auto" }}>
         <button
           onClick={() => onSendRequest(user._id)}
@@ -153,7 +151,7 @@ const HomePage = () => {
   const [outgoingRequestsIds, setOutgoingRequestsIds] = useState(new Set());
   const [search, setSearch] = useState("");
 
-  // ✅ Real-time online status from Socket.io
+
   const { isUserOnline } = useOnlineUsers();
 
   const { data: friends = [], isLoading: loadingFriends } = useQuery({
@@ -188,7 +186,7 @@ const HomePage = () => {
     f.fullName?.toLowerCase().includes(search.toLowerCase())
   );
 
-  // ✅ Uses socket online status — not f.isOnline from DB
+
   const onlineFriends = friends.filter(f => isUserOnline(f._id));
 
   return (
@@ -232,7 +230,7 @@ const HomePage = () => {
             </h1>
           </div>
 
-          {/* Search + Friend Requests */}
+         
           <div style={{ display: "flex", alignItems: "center", gap: "10px", flex: "1 1 auto", justifyContent: "flex-end", minWidth: 0 }}>
 
             {/* Search — flex grows, never overflows */}
@@ -247,7 +245,7 @@ const HomePage = () => {
                 onChange={e => setSearch(e.target.value)}
                 placeholder="Search friends..."
                 style={{
-                  width: "100%",                  // ← no more hardcoded 200px
+                  width: "100%",                  
                   boxSizing: "border-box",
                   background: "rgba(255,255,255,0.06)",
                   border: "1px solid rgba(255,255,255,0.1)",
@@ -282,44 +280,54 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* Online Friends Banner */}
-        {onlineFriends.length > 0 && (
-          <div style={{
-            background: "linear-gradient(135deg, rgba(124,58,237,0.15), rgba(168,85,247,0.06))",
-            border: "1px solid rgba(124,58,237,0.2)",
-            borderRadius: "16px", padding: "18px 24px", marginBottom: "28px",
-            display: "flex", alignItems: "center", justifyContent: "space-between",
-            flexWrap: "wrap", gap: "12px",
-          }}>
-            <div>
-              <h2 style={{ margin: "0 0 4px", fontSize: "16px", fontWeight: "600", color: "#f1f0ff", fontFamily: "'Syne', sans-serif" }}>
-                {onlineFriends.length} {onlineFriends.length === 1 ? "friend" : "friends"} online right now 🟢
-              </h2>
-              <p style={{ margin: 0, fontSize: "13px", color: "rgba(255,255,255,0.4)" }}>
-                Start a conversation or jump on a video call!
-              </p>
-            </div>
-            <div style={{ display: "flex" }}>
-              {onlineFriends.slice(0, 5).map((f, i) => {
-                const c = getAvatarColor(f.fullName);
-                const ini = f.fullName?.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
-                return f.profilePic ? (
-                  <img key={f._id} src={f.profilePic} alt={f.fullName}
-                    style={{ width: "34px", height: "34px", borderRadius: "50%", objectFit: "cover", border: "2px solid #0d0d1a", marginLeft: i > 0 ? "-8px" : "0" }}
-                  />
-                ) : (
-                  <div key={f._id} style={{
-                    width: "34px", height: "34px", borderRadius: "50%",
-                    background: `linear-gradient(135deg, ${c}cc, ${c}66)`,
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    fontSize: "11px", fontWeight: "600", color: "#fff",
-                    border: "2px solid #0d0d1a", marginLeft: i > 0 ? "-8px" : "0",
-                  }}>{ini}</div>
-                );
-              })}
-            </div>
-          </div>
-        )}
+     {/* Online Friends Banner */}
+{onlineFriends.length > 0 && (
+  <div style={{
+    background: "linear-gradient(135deg, rgba(124,58,237,0.15), rgba(168,85,247,0.06))",
+    border: "1px solid rgba(124,58,237,0.2)",
+    borderRadius: "16px", padding: "18px 24px", marginBottom: "28px",
+    display: "flex", alignItems: "center", justifyContent: "space-between",
+    flexWrap: "wrap", gap: "12px",
+  }}>
+    <div>
+      <h2 style={{ margin: "0 0 6px", fontSize: "16px", fontWeight: "600", color: "#f1f0ff", fontFamily: "'Syne', sans-serif" }}>
+        👋 Hey {authUser?.fullName?.split(" ")[0]}!
+      </h2>
+      <p style={{ margin: "0 0 4px", fontSize: "13px", color: "rgba(255,255,255,0.6)" }}>
+        {onlineFriends.length === 1
+          ? <><span style={{ color: "#a78bfa", fontWeight: "600" }}>{onlineFriends[0].fullName}</span> is online right now 🟢</>
+          : onlineFriends.length === 2
+          ? <><span style={{ color: "#a78bfa", fontWeight: "600" }}>{onlineFriends[0].fullName}</span> and <span style={{ color: "#a78bfa", fontWeight: "600" }}>{onlineFriends[1].fullName}</span> are online 🟢</>
+          : <><span style={{ color: "#a78bfa", fontWeight: "600" }}>{onlineFriends[0].fullName}</span>, <span style={{ color: "#a78bfa", fontWeight: "600" }}>{onlineFriends[1].fullName}</span> and <span style={{ color: "#a78bfa", fontWeight: "600" }}>{onlineFriends.length - 2} more</span> are online 🟢</>
+        }
+      </p>
+      <p style={{ margin: 0, fontSize: "12px", color: "rgba(255,255,255,0.3)" }}>
+        Start a conversation or jump on a video call!
+      </p>
+    </div>
+
+    {/* Stacked avatars */}
+    <div style={{ display: "flex" }}>
+      {onlineFriends.slice(0, 5).map((f, i) => {
+        const c = getAvatarColor(f.fullName);
+        const ini = f.fullName?.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+        return f.profilePic ? (
+          <img key={f._id} src={f.profilePic} alt={f.fullName}
+            style={{ width: "34px", height: "34px", borderRadius: "50%", objectFit: "cover", border: "2px solid #0d0d1a", marginLeft: i > 0 ? "-8px" : "0" }}
+          />
+        ) : (
+          <div key={f._id} style={{
+            width: "34px", height: "34px", borderRadius: "50%",
+            background: `linear-gradient(135deg, ${c}cc, ${c}66)`,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: "11px", fontWeight: "600", color: "#fff",
+            border: "2px solid #0d0d1a", marginLeft: i > 0 ? "-8px" : "0",
+          }}>{ini}</div>
+        );
+      })}
+    </div>
+  </div>
+)}
 
         {/* Friends Grid */}
         <p style={{ margin: "0 0 14px", fontSize: "11px", fontWeight: "600", color: "rgba(255,255,255,0.35)", letterSpacing: "2px", textTransform: "uppercase" }}>
@@ -338,7 +346,7 @@ const HomePage = () => {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(210px, 1fr))",
             gap: "14px",
-            alignItems: "stretch",    // ← all cards same height per row
+            alignItems: "stretch",    
             marginBottom: "40px",
           }}>
             {filteredFriends.map(friend => (
@@ -372,7 +380,7 @@ const HomePage = () => {
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(210px, 1fr))",
             gap: "14px",
-            alignItems: "stretch",    // ← all cards same height per row
+            alignItems: "stretch",  
           }}>
             {recommendedUsers.map(user => (
               <SuggestedUserCard
