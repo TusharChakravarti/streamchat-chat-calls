@@ -29,6 +29,7 @@ const SuggestedUserCard = ({ user, hasRequestBeenSent, isPending, onSendRequest 
   const [hovered, setHovered] = useState(false);
   const color = getAvatarColor(user.fullName);
   const initials = user.fullName?.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+    const { authUser } = useAuthUser();
 
   return (
     <div
