@@ -15,7 +15,7 @@ import ForgotPasswordPage from './pages/ForgetPasswordPage.jsx'
 import ResetPasswordPage from "./pages/ResetPasswordPage.jsx"
 import VerifyEmailPage from "./pages/VerifyEmailPage.jsx"
 import GoogleCallbackPage from "./pages/GoogleCallbackPage.jsx"
-
+import LandingPage from "./pages/LandingPage.jsx"
 const PUBLIC_ONLY_ROUTES = ["/verify-email", "/forgot-password", "/reset-password", "/google-callback"]
 
 const App = () => {
@@ -32,73 +32,141 @@ const App = () => {
 
   if (isLoading && !isPublicAuthRoute) return <PageLoader />
 
+  // return (
+  //   <div className='h-min-screen'>
+  //     <Routes>
+
+  //       <Route path="/" element={
+  //         isAuthenticated && isOnboarded ? (
+  //           <Layout showSidebar={true}><HomePage /></Layout>
+  //         ) : (
+  //           <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+  //         )
+  //       } />
+
+  //       <Route path="/signup" element={
+  //         !isAuthenticated ? <SignUpPage /> : (
+  //           <Navigate to={isOnboarded ? "/" : "/onboarding"} />
+  //         )
+  //       } />
+
+  //       <Route path="/login" element={
+  //         !isAuthenticated ? <LoginPage /> : (
+  //           <Navigate to={isOnboarded ? "/" : "/onboarding"} />
+  //         )
+  //       } />
+
+  //       {/* ── Auth-independent routes — always accessible ── */}
+  //       <Route path="/verify-email" element={<VerifyEmailPage />} />
+  //       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+  //       <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+  //       <Route path="/notifications" element={
+  //         isAuthenticated && isOnboarded ? (
+  //           <Layout showSidebar={true}><NotificationPage /></Layout>
+  //         ) : (
+  //           <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+  //         )
+  //       } />
+
+  //       <Route path="/call/:id" element={
+  //         isAuthenticated && isOnboarded ? (
+  //           <CallPage />
+  //         ) : (
+  //           <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+  //         )
+  //       } />
+
+  //       <Route path="/chat/:id" element={
+  //         isAuthenticated && isOnboarded ? (
+  //           <Layout showSidebar={false}><ChatPage /></Layout>
+  //         ) : (
+  //           <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+  //         )
+  //       } />
+
+  //       <Route path="/onboarding" element={
+  //         isAuthenticated ? (
+  //           !isOnboarded ? <OnboardingPage /> : <Navigate to="/" />
+  //         ) : (
+  //           <Navigate to="/login" />
+  //         )
+  //       } />
+
+  //       <Route path="/google-callback" element={<GoogleCallbackPage />} />
+
+  //     </Routes>
+  //     <Toaster />
+  //   </div>
+  // )
+
+
   return (
-    <div className='h-min-screen'>
-      <Routes>
+    <Routes>
 
-        <Route path="/" element={
-          isAuthenticated && isOnboarded ? (
-            <Layout showSidebar={true}><HomePage /></Layout>
-          ) : (
-            <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
-          )
-        } />
+  {/* ── Root — landing for guests, dashboard for users ── */}
+  <Route path="/" element={
+    !isAuthenticated
+      ? <LandingPage />
+      : isOnboarded
+        ? <Layout showSidebar={true}><HomePage /></Layout>
+        : <Navigate to="/onboarding" />
+  } />
 
-        <Route path="/signup" element={
-          !isAuthenticated ? <SignUpPage /> : (
-            <Navigate to={isOnboarded ? "/" : "/onboarding"} />
-          )
-        } />
+  <Route path="/signup" element={
+    !isAuthenticated ? <SignUpPage /> : (
+      <Navigate to={isOnboarded ? "/" : "/onboarding"} />
+    )
+  } />
 
-        <Route path="/login" element={
-          !isAuthenticated ? <LoginPage /> : (
-            <Navigate to={isOnboarded ? "/" : "/onboarding"} />
-          )
-        } />
+  <Route path="/login" element={
+    !isAuthenticated ? <LoginPage /> : (
+      <Navigate to={isOnboarded ? "/" : "/onboarding"} />
+    )
+  } />
 
-        {/* ── Auth-independent routes — always accessible ── */}
-        <Route path="/verify-email" element={<VerifyEmailPage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
+  {/* ── Auth-independent routes ── */}
+  <Route path="/verify-email" element={<VerifyEmailPage />} />
+  <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+  <Route path="/reset-password" element={<ResetPasswordPage />} />
+  <Route path="/google-callback" element={<GoogleCallbackPage />} />
 
-        <Route path="/notifications" element={
-          isAuthenticated && isOnboarded ? (
-            <Layout showSidebar={true}><NotificationPage /></Layout>
-          ) : (
-            <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
-          )
-        } />
+  <Route path="/notifications" element={
+    isAuthenticated && isOnboarded ? (
+      <Layout showSidebar={true}><NotificationPage /></Layout>
+    ) : (
+      <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+    )
+  } />
 
-        <Route path="/call/:id" element={
-          isAuthenticated && isOnboarded ? (
-            <CallPage />
-          ) : (
-            <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
-          )
-        } />
+  <Route path="/call/:id" element={
+    isAuthenticated && isOnboarded ? (
+      <CallPage />
+    ) : (
+      <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+    )
+  } />
 
-        <Route path="/chat/:id" element={
-          isAuthenticated && isOnboarded ? (
-            <Layout showSidebar={false}><ChatPage /></Layout>
-          ) : (
-            <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
-          )
-        } />
+  <Route path="/chat/:id" element={
+    isAuthenticated && isOnboarded ? (
+      <Layout showSidebar={false}><ChatPage /></Layout>
+    ) : (
+      <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
+    )
+  } />
 
-        <Route path="/onboarding" element={
-          isAuthenticated ? (
-            !isOnboarded ? <OnboardingPage /> : <Navigate to="/" />
-          ) : (
-            <Navigate to="/login" />
-          )
-        } />
+  <Route path="/onboarding" element={
+    isAuthenticated ? (
+      !isOnboarded ? <OnboardingPage /> : <Navigate to="/" />
+    ) : (
+      <Navigate to="/login" />
+    )
+  } />
 
-        <Route path="/google-callback" element={<GoogleCallbackPage />} />
-
-      </Routes>
-      <Toaster />
-    </div>
+</Routes>
   )
+
+  
 }
 
 export default App
