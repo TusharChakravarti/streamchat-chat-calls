@@ -224,6 +224,12 @@ const HomePage = () => {
           </div>
 
           <div style={{ display: "flex",flexWrap: "wrap",alignItems: "center", gap: "12px" }}>
+                 <style>{`
+          @media (max-width: 480px) {
+            .fr-btn-text { display: none; }
+            .fr-btn { padding: 9px 12px !important; }
+          }
+        `}</style>
             {/* Search */}
             <div style={{ position: "relative", flex: "1 1 140px", minWidth: "140px" }}>
               <svg style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)" }}
