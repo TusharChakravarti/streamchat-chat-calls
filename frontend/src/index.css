@@ -41,7 +41,7 @@
 
 
 
-/* .str-chat {
+.str-chat {
   --str-chat__background-color: #0d0d1a !important;
 }
 
@@ -92,4 +92,4 @@ a.str-chat__message-attachment-card-url:hover {
 
 .str-chat__list {
   background: #0d0d1a !important;
-} */
+}
