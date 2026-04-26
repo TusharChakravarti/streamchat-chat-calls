@@ -171,7 +171,7 @@ const LandingPage = () => {
           .nav-auth { display: none !important; }
           .nav-hamburger { display: flex !important; }
         }
-        @media (min-width: 700px) {
+        @media (min-width: 701px) {
           .nav-hamburger { display: none !important; }
           .mobile-menu { display: none !important; }
         }
