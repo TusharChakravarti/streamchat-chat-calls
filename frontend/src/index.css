@@ -62,7 +62,8 @@ img.str-chat__avatar-image {
 
 
 .str-chat__message-input .str-chat__send-button:not(:disabled) svg path {
-  fill: #a855f7 !important;
+  /* fill: #a855f7 !important; */
+   fill: #a78bfa !important;
 }
 
 
