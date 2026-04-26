@@ -244,7 +244,7 @@ setFormState(prev => ({
 
     {uploading? "Uploading...":"Upload Photo"}
 
-    <input type="file" accept="image/*"  onChange={handleFileChange} disabled = {uploading} style={{display:none}} />
+    <input type="file" accept="image/*"  onChange={handleFileChange} disabled = {uploading} style={{display:"none"}} />
 
   </label>
             <button type="button" onClick={handleRandomAvatar}   style={{
