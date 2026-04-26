@@ -60,6 +60,11 @@ img.str-chat__avatar-image {
   background: #1a1a2e !important;
 }
 
+
+.str-chat__message-input .str-chat__send-button svg path {
+   fill: #a855f7 !important;
+}
+
 .str-chat__send-button {
   color: #a855f7 !important;
 }
@@ -67,3 +72,4 @@ img.str-chat__avatar-image {
 .str-chat__send-button svg {
   fill: #a855f7 !important;
 }
+
