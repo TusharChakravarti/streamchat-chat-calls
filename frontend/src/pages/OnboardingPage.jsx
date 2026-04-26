@@ -198,64 +198,7 @@ setFormState(prev => ({
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
 
           {/* Avatar */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "14px" }}>
-             {/* Avatar Preview */}
-            <div style={{
-              width: "96px", height: "96px", borderRadius: "50%",
-              background: "rgba(255,255,255,0.05)",
-              border: "2px solid rgba(124,58,237,0.3)",
-              overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center",position:"relative"
-            }}>
-              {formState.profilePic ? (
-                <img src={formState.profilePic} alt="Profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-              ) : (
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                </svg>
-              )}
-
-              {uploading &&(
-                   <div style={{
-        position: "absolute", inset: 0, borderRadius: "50%",
-        background: "rgba(0,0,0,0.55)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-      }}>
-        <div style={{
-          width: "22px", height: "22px", borderRadius: "50%",
-          border: "2px solid rgba(255,255,255,0.2)",
-          borderTop: "2px solid #fff",
-          animation: "sc-spin 0.75s linear infinite",
-        }} />
-      </div>
-              )}
-
-
-            </div>
-            <label style={{
-    display: "inline-flex", alignItems: "center", gap: "7px",
-    padding: "8px 18px", borderRadius: "10px", cursor: uploading ? "not-allowed" : "pointer",
-    background: "rgba(124,58,237,0.15)", border: "1px solid rgba(124,58,237,0.3)",
-    color: "#a78bfa", fontSize: "13px", fontWeight: "600",
-    opacity: uploading ? 0.6 : 1, transition: "all 0.2s",
-  }}>
-  <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-
-    {uploading? "Uploading...":"Upload Photo"}
-
-    <input type="file" accept="image/*"  onChange={handleFileChange} disabled = {uploading} style={{display:"none"}} />
-
-  </label>
-            <button type="button" onClick={handleRandomAvatar}   style={{
-      background: "none", border: "none", cursor: "pointer",
-      fontSize: "12px", color: "rgba(255,255,255,0.3)",
-      textDecoration: "underline", padding: 0,
-    }}>
-              <ShuffleIcon size={14} />
-                 or generate random avatar
-            </button>
-          </div>
+     
 
           {/* Full Name */}
           <div>
