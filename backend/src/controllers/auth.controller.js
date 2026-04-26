@@ -195,7 +195,7 @@ export const uploadProfilePic = async(req,res)=>{
       ]
 
     });
-    const user = User.findByIdAndUpdate(
+    const user = await User.findByIdAndUpdate(
       req.user._id,
       {profilePic:result.secure_url},
       {new:true}
