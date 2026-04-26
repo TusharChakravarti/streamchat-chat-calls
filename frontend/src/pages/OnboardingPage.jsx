@@ -238,42 +238,43 @@ setFormState(prev => ({
     )}
 
     {/* Camera icon — bottom right of avatar */}
-    <label style={{
-      position: "absolute", bottom: "2px", right: "2px",
-      width: "28px", height: "28px", borderRadius: "50%",
-      background: "linear-gradient(135deg, #7c3aed, #a855f7)",
-      border: "2px solid #0d0d1a",
-      display: "flex", alignItems: "center", justifyContent: "center",
-      cursor: uploading ? "not-allowed" : "pointer",
-      opacity: uploading ? 0.6 : 1,
-    }}>
-      <svg width="13" height="13" fill="none" stroke="#fff" strokeWidth="2" viewBox="0 0 24 24">
-        <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
-        <circle cx="12" cy="13" r="4" />
-      </svg>
-      <input
-        type="file"
-        accept="image/*"
-        onChange={handleFileChange}
-        disabled={uploading}
-        style={{ display: "none" }}
-      />
-    </label>
+  <label style={{
+  position: "absolute", bottom: "2px", right: "2px",
+  width: "34px", height: "34px", borderRadius: "50%",       
+  background: "linear-gradient(135deg, #7c3aed, #a855f7)",
+  border: "none",
+  display: "flex", alignItems: "center", justifyContent: "center",
+  cursor: uploading ? "not-allowed" : "pointer",
+  opacity: uploading ? 0.6 : 1,
+}}>
+  <svg width="16" height="16" fill="none" stroke="#fff" strokeWidth="2" viewBox="0 0 24 24"> 
+    <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
+    <circle cx="12" cy="13" r="4" />
+  </svg>
+  <input type="file" accept="image/*" onChange={handleFileChange} disabled={uploading} style={{ display: "none" }} />
+</label>
   </div>
 
   {/* Random avatar button */}
-  <button
-    type="button"
-    onClick={handleRandomAvatar}
-    style={{
-      display: "inline-flex", alignItems: "center", gap: "7px",
-      background: "none", border: "none", cursor: "pointer",
-      fontSize: "13px", color: "rgba(255,255,255,0.4)", padding: 0,
-    }}
-  >
-    <ShuffleIcon size={14} />
-    Generate Random Avatar
-  </button>
+ <button
+  type="button"
+  onClick={handleRandomAvatar}
+  style={{
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    fontSize: "12px",
+    color: "rgba(255,255,255,0.3)",
+    textDecoration: "underline",
+    padding: 0,
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+  }}
+>
+  <ShuffleIcon size={14} />
+  or generate random avatar
+</button>
 
 </div>
      
