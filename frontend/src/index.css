@@ -66,3 +66,26 @@ img.str-chat__avatar-image {
 }
 
 
+
+
+
+a.str-chat__message-url-link{
+  color: #a78bfa !important;
+}
+
+a.str-chat__message-url-link:hover {
+   color: #c4b5fd !important;
+}
+
+
+
+a.str-chat__message-attachment-card-url{
+color: #a78bfa !important;
+}
+
+
+
+
+a.str-chat__message-attachment-card-url:hover {
+ color: #c4b5fd !important;
+}
