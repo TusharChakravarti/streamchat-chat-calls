@@ -49,7 +49,7 @@ router.get(
 
 router.post('/google/token', setGoogleToken)
 
-router.post('/upload-pic',protectRoute,upload.single('profilePic'),uploadProfilePic)
+router.post('/upload-profile-pic',protectRoute,upload.single('profilePic'),uploadProfilePic)
 
 router.post('/onboarding', protectRoute, onboard)
 router.get('/me', protectRoute, (req, res) => {
