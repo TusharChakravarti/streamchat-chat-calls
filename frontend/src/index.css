@@ -61,15 +61,12 @@ img.str-chat__avatar-image {
 }
 
 
-.str-chat__message-input .str-chat__send-button svg path {
-   fill: #a855f7 !important;
+.str-chat__send-button--active svg path {
+  fill: #a855f7 !important;
 }
 
-/* .str-chat__send-button {
+.str-chat__send-button--active {
   color: #a855f7 !important;
 }
 
-.str-chat__send-button svg {
-  fill: #a855f7 !important;
-} */
 
