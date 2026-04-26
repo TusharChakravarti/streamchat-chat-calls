@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import useAuthUser from "../hooks/useAuthUser";
 import { useQuery } from "@tanstack/react-query";
 import { getStreamToken } from "../lib/api";
-
+import "stream-chat-react/dist/css/v2/index.css";
 import {
   Channel,
   ChannelHeader,
@@ -96,7 +96,7 @@ const ChatPage = () => {
 
   return (
     <div className="h-[93vh]" style={{ background: "#0d0d1a" }}>
-      <Chat client={chatClient}>
+      <Chat client={chatClient} theme="str-chat__theme-dark">
         <Channel channel={channel}>
           <div className="w-full relative">
             <CallButton handleVideoCall={handleVideoCall} />
