@@ -78,13 +78,9 @@ a.str-chat__message-url-link:hover {
 }
 
 
-
-a.str-chat__message-attachment-card-url{
+a.str-chat__message-attachment-card--url{
 color: #a78bfa !important;
 }
-
-
-
 
 a.str-chat__message-attachment-card-url:hover {
  color: #c4b5fd !important;
