@@ -85,3 +85,7 @@ color: #a78bfa !important;
 a.str-chat__message-attachment-card-url:hover {
  color: #c4b5fd !important;
 }
+
+.str-chat__list {
+  background: #0d0d1a !important;
+}
