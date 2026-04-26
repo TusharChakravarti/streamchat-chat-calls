@@ -14,6 +14,7 @@ import {
   setGoogleToken,
   uploadProfilePic
 } from '../controllers/auth.controller.js'
+import { upload } from '../lib/multer.js'
 
 const router = express.Router()
 
