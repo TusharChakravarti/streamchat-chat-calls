@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { completeOnboarding } from "../lib/api";
 import { LoaderIcon, MapPinIcon, ShuffleIcon, ShipWheelIcon } from "lucide-react";
 import { LANGUAGES } from "../constants";
+import { axiosInstance } from "../lib/axios";
 
 const OnboardingPage = () => {
   const { authUser } = useAuthUser();
@@ -19,6 +20,8 @@ const OnboardingPage = () => {
     profilePic: authUser?.profilePic || "",
   });
 
+  const [previewUrl,setPreviewUrl] = useState(authUser?.profilePic || null)
+  const [uploading, setUploading] = useState(false);
   const { mutate: onboardingMutation, isPending } = useMutation({
     mutationFn: completeOnboarding,
     onSuccess: () => {
@@ -30,15 +33,51 @@ const OnboardingPage = () => {
     },
   });
 
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     onboardingMutation(formState);
   };
 
+  const handleFileChange = async(e) =>{
+const file = e.target.files[0];
+if(!file) return;
+setPreviewUrl(URL.createObjectURL(file))
+setUploading(true);
+try{
+const formData = new FormData();
+formData.append("profilePic",file);
+const res = await axiosInstance.post('/auth/upload-profile-pic',formData,{
+  headers:{"Content-Type":"multipart/form-data"}
+})
+
+setFormState(prev=>({
+  ...prev,
+  profilePic:res.data.profilePic
+  
+}))
+
+
+    toast.success("Profile picture uploaded!");
+}
+catch{
+    toast.error("Upload failed. Please try again.");
+    setPreviewUrl(null);
+}
+finally{
+      setUploading(false);
+
+}
+
+  }
+
   const handleRandomAvatar = () => {
     const idx = Math.floor(Math.random() * 100) + 1;
     const randomAvatar = `https://api.dicebear.com/9.x/toon-head/svg?seed=${idx}`;
-    setFormState({ ...formState, profilePic: randomAvatar });
+setFormState(prev => ({
+  ...prev,
+  profilePic: randomAvatar
+}));
     toast.success("Random avatar generated!");
   };
 
@@ -160,11 +199,12 @@ const OnboardingPage = () => {
 
           {/* Avatar */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "14px" }}>
+             {/* Avatar Preview */}
             <div style={{
               width: "96px", height: "96px", borderRadius: "50%",
               background: "rgba(255,255,255,0.05)",
               border: "2px solid rgba(124,58,237,0.3)",
-              overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center",
+              overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center",position:"relative"
             }}>
               {formState.profilePic ? (
                 <img src={formState.profilePic} alt="Profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -173,10 +213,45 @@ const OnboardingPage = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                 </svg>
               )}
+
+              {uploading &&(
+                   <div style={{
+        position: "absolute", inset: 0, borderRadius: "50%",
+        background: "rgba(0,0,0,0.55)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>
+        <div style={{
+          width: "22px", height: "22px", borderRadius: "50%",
+          border: "2px solid rgba(255,255,255,0.2)",
+          borderTop: "2px solid #fff",
+          animation: "sc-spin 0.75s linear infinite",
+        }} />
+      </div>
+              )}
+
+
             </div>
-            <button type="button" onClick={handleRandomAvatar} className="ob-btn-secondary">
+            <label style={{
+    display: "inline-flex", alignItems: "center", gap: "7px",
+    padding: "8px 18px", borderRadius: "10px", cursor: uploading ? "not-allowed" : "pointer",
+    background: "rgba(124,58,237,0.15)", border: "1px solid rgba(124,58,237,0.3)",
+    color: "#a78bfa", fontSize: "13px", fontWeight: "600",
+    opacity: uploading ? 0.6 : 1, transition: "all 0.2s",
+  }}>
+  <svg width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+      <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+
+    {uploading? "Uploading...":"Upload Photo"}
+
+  </label>
+            <button type="button" onClick={handleRandomAvatar}   style={{
+      background: "none", border: "none", cursor: "pointer",
+      fontSize: "12px", color: "rgba(255,255,255,0.3)",
+      textDecoration: "underline", padding: 0,
+    }}>
               <ShuffleIcon size={14} />
-              Generate Random Avatar
+                 or generate random avatar
             </button>
           </div>
 

@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { Router } from 'express'
 import passport from '../lib/passport.js'
 import { protectRoute } from '../middleware/auth.middleware.js'
 import {
@@ -11,7 +11,8 @@ import {
   googleCallback,
   forgotPassword,
   resetPassword,
-  setGoogleToken
+  setGoogleToken,
+  uploadProfilePic
 } from '../controllers/auth.controller.js'
 
 const router = express.Router()
@@ -46,6 +47,8 @@ router.get(
 )
 
 router.post('/google/token', setGoogleToken)
+
+router.post('/upload-pic',protectRoute,upload.single('profilePic'),uploadProfilePic)
 
 router.post('/onboarding', protectRoute, onboard)
 router.get('/me', protectRoute, (req, res) => {

@@ -1,6 +1,8 @@
 import User from '../models/User.js'
 import jwt from 'jsonwebtoken'
 import crypto from 'crypto'
+import cloudinary from '../lib/cloudinary.js'
+
 import { upsertStreamUser } from '../lib/stream.js'
 import { sendVerificationEmail, sendPasswordResetEmail } from '../lib/email.js'
 
@@ -177,6 +179,38 @@ export  function logout(req,res){
     secure: true,
   })
     res.status(200).json({succes:true,message:"Logout successfull"})
+
+}
+
+export const uploadProfilePic = async(req,res)=>{
+  try{
+    if(!req.file){
+      return res.status(400).json({message:"No file uploaded"})
+    }
+    const base64 = `data:${req.file.mimetype};base64,${req.file.buffer.toString("base64")}`
+    const result = await cloudinary.uploader.upload(base64,{
+      folder:"/streamchat/profile-pics",
+      transformation:[
+        {width:200,height:200,crop:"fill",gravity:"face"}
+      ]
+
+    });
+    const user = User.findByIdAndUpdate(
+      req.user._id,
+      {profilePic:result.secure_url},
+      {new:true}
+    );
+    res.status(200).json({
+      success:true,
+      profilePic:result.secure_url,
+      user
+    })
+
+  }
+   catch (error) {
+    console.log("Upload error:", error);
+    res.status(500).json({ message: "Upload failed" });
+  }
 
 }
 
