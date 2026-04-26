@@ -260,16 +260,11 @@ setFormState(prev => ({
   type="button"
   onClick={handleRandomAvatar}
   style={{
-    background: "none",
-    border: "none",
-    cursor: "pointer",
-    fontSize: "12px",
-    color: "rgba(255,255,255,0.3)",
-    textDecoration: "underline",
-    padding: 0,
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
+   display: "inline-flex", alignItems: "center", gap: "8px",
+    padding: "8px 18px", borderRadius: "10px", cursor: "pointer",
+    background: "rgba(124,58,237,0.15)", border: "1px solid rgba(124,58,237,0.3)",
+    color: "#a78bfa", fontSize: "13px", fontWeight: "600",
+    transition: "all 0.2s",
   }}
 >
   <ShuffleIcon size={14} />
