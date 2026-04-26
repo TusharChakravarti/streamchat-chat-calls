@@ -151,7 +151,7 @@ const LandingPage = () => {
           .steps-grid { grid-template-columns: repeat(2, 1fr) !important; }
           .step-connector { display: none !important; }
         }
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
           .hero-section { padding: 64px 20px 80px !important; }
           .hero-title { font-size: 34px !important; letter-spacing: -1px !important; }
           .hero-sub { font-size: 15px !important; }
