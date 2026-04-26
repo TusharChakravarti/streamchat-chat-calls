@@ -26,13 +26,19 @@ query:{ userId:authUser._id },
         socket.on("disconnect", () => {
           console.log("Socket disconnected");
         });
+        
 
-        socket.on("onlineUsers",(users) =>{
-            setOnlineUsers(users);
-});
+
    
 }
+socket.off("onlineUsers");
+ socket.on("onlineUsers",(users) =>{
+            setOnlineUsers(users);
+});
 
+ if (socket.connected) {
+            socket.emit("getOnlineUsers");
+        }
 
 return () =>{
       if (socket){
