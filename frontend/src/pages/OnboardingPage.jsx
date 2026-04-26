@@ -198,6 +198,84 @@ setFormState(prev => ({
         <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
 
           {/* Avatar */}
+
+          {/* Avatar */}
+<div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "14px" }}>
+
+  {/* Avatar Preview with camera overlay */}
+  <div style={{ position: "relative", width: "96px", height: "96px" }}>
+    
+    {/* Circle */}
+    <div style={{
+      width: "96px", height: "96px", borderRadius: "50%",
+      background: "rgba(255,255,255,0.05)",
+      border: "2px solid rgba(124,58,237,0.3)",
+      overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center",
+    }}>
+      {formState.profilePic ? (
+        <img src={formState.profilePic} alt="Profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      ) : (
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+        </svg>
+      )}
+    </div>
+
+    {/* Uploading spinner overlay */}
+    {uploading && (
+      <div style={{
+        position: "absolute", inset: 0, borderRadius: "50%",
+        background: "rgba(0,0,0,0.55)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>
+        <div style={{
+          width: "22px", height: "22px", borderRadius: "50%",
+          border: "2px solid rgba(255,255,255,0.2)",
+          borderTop: "2px solid #fff",
+          animation: "sc-spin 0.75s linear infinite",
+        }} />
+      </div>
+    )}
+
+    {/* Camera icon — bottom right of avatar */}
+    <label style={{
+      position: "absolute", bottom: "2px", right: "2px",
+      width: "28px", height: "28px", borderRadius: "50%",
+      background: "linear-gradient(135deg, #7c3aed, #a855f7)",
+      border: "2px solid #0d0d1a",
+      display: "flex", alignItems: "center", justifyContent: "center",
+      cursor: uploading ? "not-allowed" : "pointer",
+      opacity: uploading ? 0.6 : 1,
+    }}>
+      <svg width="13" height="13" fill="none" stroke="#fff" strokeWidth="2" viewBox="0 0 24 24">
+        <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" />
+        <circle cx="12" cy="13" r="4" />
+      </svg>
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleFileChange}
+        disabled={uploading}
+        style={{ display: "none" }}
+      />
+    </label>
+  </div>
+
+  {/* Random avatar button */}
+  <button
+    type="button"
+    onClick={handleRandomAvatar}
+    style={{
+      display: "inline-flex", alignItems: "center", gap: "7px",
+      background: "none", border: "none", cursor: "pointer",
+      fontSize: "13px", color: "rgba(255,255,255,0.4)", padding: 0,
+    }}
+  >
+    <ShuffleIcon size={14} />
+    Generate Random Avatar
+  </button>
+
+</div>
      
 
           {/* Full Name */}
