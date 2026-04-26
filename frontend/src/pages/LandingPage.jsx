@@ -269,7 +269,7 @@ const LandingPage = () => {
             borderRadius: "100px", padding: "5px 14px", marginBottom: "28px",
             fontSize: "12px", color: "#a78bfa", fontWeight: "500",
           }}>
-            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#a78bfa", display: "inline-block", animation: "pulse-ring 1.5s ease infinite" }} />
+            <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "##ef4444", display: "inline-block", animation: "pulse-ring 1.5s ease infinite" }} />
             Now live — connect with learners worldwide
           </div>
 
